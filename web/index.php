@@ -10,8 +10,13 @@ finCuerpo();
 // **********************************************************
 
 //vista
-function cabecera() 
-{}
+function cabecera() {
+
+    ?>
+    <!-- esto va en el head -->
+    <?php
+
+}
 
 //vista
 function cuerpo()
