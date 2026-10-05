@@ -19,11 +19,12 @@ function cuerpo()
 {
 ?>
     <br><br>
+    <main id="main">
     Elemento de pruebas
     <br><br>
     <a href="basicas.php">Funcionamiento basico</a>   
     <a href="pasopar.php">Paso parametros</a>   
-    <a href="Proyecto1/Ej1.php">Ej1 Libreria Math</a>   
-
+    <a href="../Proyecto1/Ej1.php">Ej1 Libreria Math</a>   
+    </main>
 <?php
 }

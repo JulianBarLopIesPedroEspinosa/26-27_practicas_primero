@@ -1,17 +1,17 @@
 @charset "UTF8";
 
 body {
-    background-color: cyan;
+    background-color: rgb(182, 255, 193);
     font-size: 16px;
 }
 
 #documento{
     margin: 0 auto;
-    background-color: #8080ff;
+    background-color: #bcbcffb6;
     width: 700px;
 }
 #cabecera{
-    background-color: #14e737;
+    background-color: #80fdffdc;
     padding: 5px;
 }
 #cabecera #logo{
@@ -22,6 +22,13 @@ body {
 #cabecera #titulo{
     font-size: 1.3em;
     font-style: italic;
+}
+#main{
+    margin: 7px;
+    border: 3px, solid, black;
+    border-radius: 5px;
+    background-color: aliceblue;
+    padding: 7px 20px 20px;
 }
 
 .boton{
@@ -66,11 +73,6 @@ body {
     color: white;
     
 }
-
-.tabla tr.impar{
-    
-}
-
 #pie{
     background-color: #81e714;
     color: blue;

@@ -22,7 +22,9 @@ function cabecera() {
 function cuerpo()
 {
 ?>
+    <main id="main">
     <br><br>
     <a href="./aplicacion/pruebas/index.php">Acceso a pruebas</a>
+    </main>
 <?php
 }
