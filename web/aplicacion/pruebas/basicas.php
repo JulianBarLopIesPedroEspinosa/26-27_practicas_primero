@@ -55,7 +55,7 @@ function cuerpo()
 
         $var1 = 100; //100
         $var2 = $var1; //100
-        $var3 =&$var1; //100
+        $var3 =&$var1; //100 paso por referencia
         $var1 = 200; //var1 = 200 var3 = 200
         $var2 = $var3; // var2 = 200
         unset($var3); //var1 = 200 var3 = uninitialized
@@ -83,6 +83,28 @@ function cuerpo()
             default: $cadena = "dos"; //Si no pones breack llega hasta aqui
         }
         $cadena;
+
+
+        $miArray[3]=45345;
+        $miArray[7]=1253;
+        $miArray[]=132; //Esto se pone en la ultima posicion y no tiene indice $i
+
+        $final=count($miArray);
+        for($i=0;$i<$final;$i++){
+            if(isset($miArray[$i]))
+            echo $miArray[$i]."<br />";
+            else
+                $final++;
+            };
+
+        $miArray["nueva"]=24; //Esto es una declaracion asociativa que es distinto 
+                                // del escalar (1,2,3,4,5...) y solo se recorre con foreach
+        $total=0;
+        foreach($miArray as $i=>$valor){
+            $total+=$miArray[$i];
+            $total-=$valor;
+        }
+
 
     ?>
 
