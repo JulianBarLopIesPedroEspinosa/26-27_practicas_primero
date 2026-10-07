@@ -64,13 +64,33 @@ function cuerpo()
     /* En esta funcion cargamos los ejemplos de pasar de entero a hexadecimal y de 
         base 4 a base 8*/
     function hexadecimalNibble(){
-        echo "<br><br><br>De entero a hexadcimal, y de base 4 a base 8.";
+        echo "<br><br><br>De entero a hexadcimal, y de base 4 a base 8.
+                <br><br>dechex: Convierte de decimal a hexadecimal. dechex(num)
+                <br>Ejemplo: 255 a hexadecimal => dechex(255) = ".dechex(255);
+        echo "<br><br>base_convert: Convierte un número entre bases arbitrarias. 
+                base_convert(\"num\", from_base, to_base)
+                <br>Ejemplo: 31 de base 4 a base 8 => base_convert(\"31\",4,8) = ".base_convert("31",4,8);
+    };
+
+    /* Aqui vamos a mostrar 3 variables definidas en binario, octal y hexadecimal,
+        y luego las mostraremos tanto en decimal como en su base original */
+    function binOctHex(){
+        // Definición de variables con distintos prefijos
+        $bin = 0b1010;   
+        $oct = 0o12;     
+        $hex = 0xA;     
+
+        // Mostrar en decimal 
+        echo "<br><br><br>Tres variables, binario, octal, hexadecimal:
+                <br><br>Decimal: $bin => Binario: 1010.  
+                <br>Decimal: $oct => Octal: 12.
+                <br>Decimal: $hex => Hexadecimal: A.";  
     };
 
     //Llamamos a las funciones que cargaran los apartados del ejercicio
     funcionesMatematicas();
     hexadecimalNibble();
-
+    binOctHex();
             
 
     ?>
