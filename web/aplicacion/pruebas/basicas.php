@@ -6,12 +6,28 @@ HAY QUE PONER FUERA DE LAS CONSTANTES FUERA DE LAS FUNCIONES
 */
 const NUME = 42;
 define("MUNE", 24);
+//Controlador
+    $barra=[
+
+        [
+            "TEXTO"=> "inicio",
+            "ENLACE"=>"/../../index.php",
+            "ADICIONAL"=>">>"
+            ],
+        [
+            "TEXTO"=>"Pruebas"
+        ],   
+        [
+            "TEXTO"=>"basicas",
+            "ENLACE" => "/aplicacion/pruebas/basicas.php"
+            ]
+        ];
 
 //dibuja la plantilla de la vista
 inicioCabecera("APLICACION PRIMER TRIMESTRE");
 cabecera();
 finCabecera();
-inicioCuerpo("Pruebas basicas");
+inicioCuerpo("Pruebas basicas",$barra);
 cuerpo();  //llamo a la vista
 finCuerpo();
 // **********************************************************

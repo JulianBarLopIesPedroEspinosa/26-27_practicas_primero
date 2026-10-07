@@ -1,10 +1,27 @@
 <?php
 include_once(dirname(__FILE__) . "/../../cabecera.php");
+//Controlador
+    $barra=[
+
+        [
+            "TEXTO"=> "inicio",
+            "ENLACE"=>"index.php",
+            "ADICIONAL"=>">>"
+            ],
+        [
+            "TEXTO"=>"Proyecto1"
+        ],
+        [
+            "TEXTO" =>"Ej1",
+            "ENLACE"=>"/aplicacion/pruebas/pasopar.php"
+        ]
+        ];
+
 //dibuja la plantilla de la vista
 inicioCabecera("Ej1 Libreria Math");
 cabecera();
 finCabecera();
-inicioCuerpo("Ej1 Libreria Math");
+inicioCuerpo("Ej1 Libreria Math",$barra);
 cuerpo();  //llamo a la vista
 finCuerpo();
 // **********************************************************

@@ -1,11 +1,27 @@
 <?php
-include_once(dirname(__FILE__) . "/../cabecera.php");
+include_once(dirname(__FILE__) . "/../../cabecera.php");
+//Controlador
+    $barra=[
+
+        [
+            "TEXTO"=> "inicio",
+            "ENLACE"=>"index.php",
+            "ADICIONAL"=>">>"
+            ],
+        [
+            "TEXTO"=>"Pruebas"
+        ],   
+        [
+            "TEXTO"=>"index",
+            "ENLACE" => "./aplicacion/pruebas/index.php"
+            ]
+        ];
 
 //dibuja la plantilla de la vista
 inicioCabecera("APLICACION PRIMER TRIMESTRE");
 cabecera();
 finCabecera();
-inicioCuerpo("2DAW APLICACION");
+inicioCuerpo("2DAW APLICACION",$barra);
 cuerpo();  //llamo a la vista
 finCuerpo();
 // **********************************************************
