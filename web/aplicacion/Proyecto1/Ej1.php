@@ -1,10 +1,10 @@
 <?php
 include_once(dirname(__FILE__) . "/../../cabecera.php");
 //dibuja la plantilla de la vista
-inicioCabecera("Ej1 Libreria path");
+inicioCabecera("Ej1 Libreria Math");
 cabecera();
 finCabecera();
-inicioCuerpo("Ej1 Libreria path");
+inicioCuerpo("Ej1 Libreria Math");
 cuerpo();  //llamo a la vista
 finCuerpo();
 // **********************************************************
@@ -68,7 +68,7 @@ function cuerpo()
                 <br><br>dechex: Convierte de decimal a hexadecimal. dechex(num)
                 <br>Ejemplo: 255 a hexadecimal => dechex(255) = ".dechex(255);
         echo "<br><br>base_convert: Convierte un número entre bases arbitrarias. 
-                base_convert(\"num\", from_base, to_base)
+                <br>base_convert(\"num\", from_base, to_base)
                 <br>Ejemplo: 31 de base 4 a base 8 => base_convert(\"31\",4,8) = ".base_convert("31",4,8);
     };
 
