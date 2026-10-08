@@ -75,6 +75,8 @@ function inicioCuerpo(string $cabecera, array $ubicacion)
                 if($ubicacion){
                     
                     foreach($ubicacion as $elem){
+                        echo "&nbsp&nbsp>>&nbsp&nbsp";
+                      
                         if(isset($elem["ENLACE"]))
                             echo '<a href="'.$elem["ENLACE"].'">';
                         
@@ -82,11 +84,6 @@ function inicioCuerpo(string $cabecera, array $ubicacion)
 
                         if(isset($elem["ENLACE"]))
                             echo '</a>';
-
-                        if(isset($elem["ADICIONAL"]))
-                            echo $elem["ADICIONAL"];
-         
-                        echo "&nbsp&nbsp";
                         }
                 }
 

@@ -5,7 +5,7 @@ include_once(dirname(__FILE__) . "/../../cabecera.php");
 
         [
             "TEXTO"=> "inicio",
-            "ENLACE"=>"index.php",
+            "ENLACE"=>"/index.php",
             "ADICIONAL"=>">>"
             ],
         [
@@ -13,7 +13,7 @@ include_once(dirname(__FILE__) . "/../../cabecera.php");
         ],   
         [
             "TEXTO"=>"index",
-            "ENLACE" => "./aplicacion/pruebas/index.php"
+            "ENLACE" => "index.php"
             ]
         ];
 

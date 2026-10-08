@@ -24,8 +24,11 @@ body {
     font-style: italic;
 }
 #barraUbicacion{
-    background-color: #09f;
-    color: tomato;
+    background-color: #80fdffdc;
+    border: 2px, solid,teal ;
+    border-radius: 7px;
+    padding: 3px;
+    color: blue;
 }
 
 #main{
@@ -35,7 +38,6 @@ body {
     background-color: aliceblue;
     padding: 7px 20px 20px;
 }
-
 .boton{
     background-color: blue;
     color:white;
