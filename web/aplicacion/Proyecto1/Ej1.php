@@ -6,6 +6,10 @@ $barra = [
     [
         "TEXTO" => "inicio",
         "ENLACE" => "/index.php",
+    ],    
+    [
+        "TEXTO" =>"Menu",
+        "ENLACE" =>"/aplicacion/pruebas/index.php"
     ],
     [
         "TEXTO" => "Proyecto1"

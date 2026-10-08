@@ -12,7 +12,7 @@ include_once(dirname(__FILE__) . "/../../cabecera.php");
             "TEXTO"=>"Pruebas"
         ],   
         [
-            "TEXTO"=>"index",
+            "TEXTO"=>"Menu",
             "ENLACE" => "index.php"
             ]
         ];
@@ -42,6 +42,12 @@ function cuerpo()
     <a href="pasopar.php">Paso parametros</a>   <br>
     <a href="../Proyecto1/Ej1.php">Ej1 </a>   <br>
     <a href="../Proyecto1/Ej2.php">Ej2 </a>   <br>
+    <a href="../Proyecto1/Ej3.php">Ej3 </a>   <br>
+    <a href="../Proyecto1/Ej4.php">Ej4 </a>   <br>
+    <a href="../Proyecto1/Ej5.php">Ej5 </a>   <br>
+    <a href="../Proyecto1/Ej6.php">Ej6 </a>   <br>
+    <a href="../Proyecto1/Ej7.php">Ej7 </a>   <br>
+
 
     </main>
 <?php
