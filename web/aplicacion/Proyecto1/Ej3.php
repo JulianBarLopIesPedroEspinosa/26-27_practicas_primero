@@ -22,22 +22,22 @@ $barra = [
 
 //Primer array
 $myArray = [];
-$myArray[0] = 1;
-$myArray[15] = 16;
-$myArray[53] = 54;
-$myArray[] = 34;
-$myArray["uno"] = "cadena";
-$myArray["dos"] = true;
-$myArray["tres"] = 1.345;
-$myArray[] = [1, 34, "nueva"];
 
+//Array con una sola sentencia
+$myArray1 = array();
+
+//Array con una sola sentencia
+$myArray2 = [];
+
+//Array donde se guardan los demas
+$superArray = [&$myArray,&$myArray1,&$myArray2];
 
 //dibuja la plantilla de la vista
 inicioCabecera("Ej3");
 cabecera();
 finCabecera();
 inicioCuerpo("Ej3", $barra);
-cuerpo($myArray);  //llamo a la vista
+cuerpo($superArray, $myArray, $myArray1, $myArray2,);  //llamo a la vista
 finCuerpo();
 // **********************************************************
 
@@ -52,7 +52,7 @@ function cabecera()
 }
 
 //vista
-function cuerpo(array $myArray)
+function cuerpo(array &$superArray,array &$myArray, array &$myArray1, array &$myArray2)
 {
 ?>
     <main id="main">
@@ -71,15 +71,50 @@ function cuerpo(array $myArray)
                 - Hacer lo anterior usando una sola sentencia con []<br>
                 - Recorrer los tres arrays usando foreach mostrando todos los valores de los arrays creados<br>
                 Los arrays se definirán en el controlador y se visualizarán en la vista.<br><br><br><br>";
+        //Damos los valores al primer array
+        $myArray[1] = 1;
+        $myArray[16] = 16;
+        $myArray[54] = 54;
+        $myArray[] = 34;
+        $myArray["uno"] = "cadena";
+        $myArray["dos"] = true;
+        $myArray["tres"] = 1.345;
+        $myArray["ultima"] = [1, 34, "nueva"];
+        
+        //Damos los valores al segundo array    
+        $myArray1 = array(
+            1 => 1,
+            16 => 16,
+            54 => 54,
+            34,
+            "uno" => "cadena",
+            "dos" => true,
+            "tres" => 1.345,
+            "ultima" => [1, 34, "nueva"]
+        );
 
+        //Damos los valores al tercer array
+        $myArray2 = [
+            1 => 1,
+            16 => 16,
+            54 => 54,
+            34,
+            "uno" => "cadena",
+            "dos" => true,
+            "tres" => 1.345,
+            "ultima" => [1, 34, "nueva"]
+        ];
 
-
-        foreach ($myArray as $elem) {
-            echo $elem."<br>";
-        }
-
-
-        //Ejecucion de las funciones
+        //Mostrar el primer array
+        foreach($superArray as $array){
+                foreach ($array as $elem) {
+                if (is_array($elem))
+                    print_r($elem);
+                else
+                    echo $elem."<br>";
+            };
+            echo "<br><br>";
+        };
 
 
         ?>

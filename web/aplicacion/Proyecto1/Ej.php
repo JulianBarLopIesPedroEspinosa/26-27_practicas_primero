@@ -15,17 +15,17 @@ $barra = [
         "TEXTO" => "Proyecto1"
     ],
     [
-        "TEXTO" => "Ej?",
-        "ENLACE" => "/aplicacion/Proyecto1/Ej?.php"
+        "TEXTO" => "Ej¿",
+        "ENLACE" => "/aplicacion/Proyecto1/Ej¿.php"
     ]
 ];
 
 
 //dibuja la plantilla de la vista
-inicioCabecera("Ej?");
+inicioCabecera("Ej¿");
 cabecera();
 finCabecera();
-inicioCuerpo("Ej?", $barra);
+inicioCuerpo("Ej¿", $barra);
 cuerpo();  //llamo a la vista
 finCuerpo();
 // **********************************************************
@@ -47,7 +47,7 @@ function cuerpo()
     <main id="main">
         <br><br>
 
-        <?php //Ejercicio ?:
+        <?php //Ejercicio ¿:
       
 
 
