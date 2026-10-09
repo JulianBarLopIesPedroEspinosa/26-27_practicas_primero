@@ -74,27 +74,23 @@ function cuerpo(array $vector)
                 El array se definirá en el controlador y se visualizará en la vista     <br><br><br>';
 
 
-                foreach($vector as $i=> $elem){
-                    echo "<br>posicion $i contenido ";
-                    if(is_array($elem)){
-                        echo "(array); ";
-                        foreach($elem as $j){
-                            echo $j." ";  
-                        }
-                    }
-                    else if (is_int($elem)){
-                        echo "(entero); Entero con valor $elem, en binario ".decbin($elem);
-                    }
-                    else if(is_float($elem)){
-                        echo "(real); $elem que al cuadrado es ".pow($elem,2);
-                    }
-                    else if(is_string($elem)){
-                        echo "(cadena); $elem";
-                    }
-                    else if(is_bool($elem)){//Aqui hay una condicional porque sino no se muestran los booleanos
-                        echo "(boolean);".(($elem)?"true":"false").", y su opuesto ".((!$elem)?"true":"false");
-                    };
-                };
+        foreach ($vector as $i => $elem) {
+            echo "<br>posicion $i contenido ";
+            if (is_array($elem)) {
+                echo "(array); ";
+                foreach ($elem as $j) {
+                    echo $j . " ";
+                }
+            } else if (is_int($elem)) {
+                echo "(entero); Entero con valor $elem, en binario " . decbin($elem);
+            } else if (is_float($elem)) {
+                echo "(real); $elem que al cuadrado es " . pow($elem, 2);
+            } else if (is_string($elem)) {
+                echo "(cadena); $elem";
+            } else if (is_bool($elem)) { //Aqui hay una condicional porque sino no se muestran los booleanos
+                echo "(boolean);" . (($elem) ? "true" : "false") . ", y su opuesto " . ((!$elem) ? "true" : "false");
+            };
+        };
 
         ?>
     </main>
