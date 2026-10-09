@@ -19,21 +19,23 @@ $barra = [
         "ENLACE" => "/aplicacion/Proyecto1/Ej4.php"
     ]
 ];
-    //Creo el array 
-    $myArray =[];
+//Creo el array 
+$myArray = [];
 
-    //Creo la constante
-    const FILAS = 7;
+//Creo la constante
+const FILAS = 7;
 
-    //Voy a crear una funcion donde le mando como parametro la variable constante de filas
-    function piramide(int $num, array &$myArray){
-        
-        for($i = 0; $i<$num;$i++){
-            for($j=0;$j<=$i;$j++){
-                $myArray[$i][$j]= $i+1;
-            };
+//Voy a crear una funcion donde le mando como parametro un numero
+    // y la variable del array que va por referencia
+function piramide(int $num, array &$myArray)
+{
+
+    for ($i = 0; $i < $num; $i++) {
+        for ($j = 0; $j <= $i; $j++) {
+            $myArray[$i][$j] = $i + 1;
         };
     };
+};
 
 
 
@@ -57,7 +59,7 @@ function cabecera()
 }
 
 //vista
-function cuerpo( array $myArray)
+function cuerpo(array $myArray)
 {
 ?>
     <main id="main">
@@ -76,9 +78,10 @@ function cuerpo( array $myArray)
             Repetir lo anterior usando FILAS para crear el array y visualizarlo.
             Los datos se definirán en el controlador y se visualizarán en la vista<br><br><br>";
 
-        function mostrarArray(array $myArray){
-            foreach($myArray as $elem){
-                foreach($elem as $j){
+        function mostrarArray(array $myArray)
+        {
+            foreach ($myArray as $elem) {
+                foreach ($elem as $j) {
                     echo "&nbsp$j";
                 };
                 echo "<br>";

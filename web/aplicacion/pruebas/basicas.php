@@ -121,6 +121,17 @@ function cuerpo()
             $total-=$valor;
         }
 
+        echo "<br><br> Fechas:<br>";
+
+        echo $cadena = date("d/m/Y H:i:s");
+
+        $hoy = new DateTime();
+        $cadena =$hoy->format('d/m/Y H:i:s'); 
+        
+        $intervalo = new DateInterval("P2M3DT5H");
+        $hoy->add($intervalo);
+
+        echo "<br>".$cadena;
 
     ?>
 

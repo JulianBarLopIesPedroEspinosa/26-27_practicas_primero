@@ -8,8 +8,8 @@ $barra = [
         "ENLACE" => "/index.php"
     ],
     [
-        "TEXTO" =>"Menu",
-        "ENLACE" =>"/aplicacion/pruebas/index.php"
+        "TEXTO" => "Menu",
+        "ENLACE" => "/aplicacion/pruebas/index.php"
     ],
     [
         "TEXTO" => "Proyecto1"
@@ -69,8 +69,8 @@ function cuerpo()
         };
 
         // Funcion donde cada tirada que hace la guarda en un array y luego muestra la cantida de veces 
-            // que ha salido cada cara, para ello usamos un switch que aumenta en uno el valor de la posicion
-            // del array correspondiente a la cara
+        // que ha salido cada cara, para ello usamos un switch que aumenta en uno el valor de la posicion
+        // del array correspondiente a la cara
         function lanzamientosArray(int $num)
         {
             $lanzamientos = [0, 0, 0, 0, 0, 0]; //Inicializamos el array cada vez que hacemos la llamada y evitamos errores
@@ -98,12 +98,12 @@ function cuerpo()
                 } //Fin switch
                 $i++; //Aumentamos el contador
             }; //fin while
- 
+
             //Mostramos los resultados
             echo "<br>Se ha lanzado el dado " . $num . " veces.<br>";
 
             foreach ($lanzamientos as $i => $elem) {
-                echo "el ".($i+1)." ha salido ".$elem." con un porcentaje de ".(($elem / $num)*100)."%<br>";
+                echo "el " . ($i + 1) . " ha salido " . $elem . " con un porcentaje de " . (($elem / $num) * 100) . "%<br>";
             };
         };
 

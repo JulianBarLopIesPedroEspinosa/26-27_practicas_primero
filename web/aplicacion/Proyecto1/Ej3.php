@@ -30,7 +30,7 @@ $myArray1 = array();
 $myArray2 = [];
 
 //Array donde se guardan los demas
-$superArray = [&$myArray,&$myArray1,&$myArray2];
+$superArray = [&$myArray, &$myArray1, &$myArray2];
 
 //dibuja la plantilla de la vista
 inicioCabecera("Ej3");
@@ -52,7 +52,7 @@ function cabecera()
 }
 
 //vista
-function cuerpo(array &$superArray,array &$myArray, array &$myArray1, array &$myArray2)
+function cuerpo(array &$superArray, array &$myArray, array &$myArray1, array &$myArray2)
 {
 ?>
     <main id="main">
@@ -80,7 +80,7 @@ function cuerpo(array &$superArray,array &$myArray, array &$myArray1, array &$my
         $myArray["dos"] = true;
         $myArray["tres"] = 1.345;
         $myArray["ultima"] = [1, 34, "nueva"];
-        
+
         //Damos los valores al segundo array    
         $myArray1 = array(
             1 => 1,
@@ -106,12 +106,12 @@ function cuerpo(array &$superArray,array &$myArray, array &$myArray1, array &$my
         ];
 
         //Mostrar el primer array
-        foreach($superArray as $array){
-                foreach ($array as $elem) {
+        foreach ($superArray as $array) {
+            foreach ($array as $elem) {
                 if (is_array($elem))
                     print_r($elem);
                 else
-                    echo $elem."<br>";
+                    echo $elem . "<br>";
             };
             echo "<br><br>";
         };
