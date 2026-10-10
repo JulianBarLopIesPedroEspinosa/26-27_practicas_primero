@@ -19,7 +19,16 @@ $barra = [
         "ENLACE" => "/aplicacion/Proyecto1/Ej7.php"
     ]
 ];
+function fechas(DateTime $fecha){
+        $cadena =$fecha->format('d/m/Y'); 
+        echo $cadena;  //fecha actual en el formato “d/m/Y”
 
+        $cadena =$fecha->format('d, M, Y, l.'); 
+        echo "<br>".$cadena;
+
+        $cadena =$fecha->format('H:i:s'); 
+        echo "<br>".$cadena;
+        };
 
 //dibuja la plantilla de la vista
 inicioCabecera("Ej7");
@@ -50,18 +59,35 @@ function cuerpo()
         <?php //Ejercicio 7:
 
        echo "7.- Mostrar el funcionamiento de las fechas. Se harán todos los apartados usando la serie de funciones
-            para gestión de fecha. Se repetirán todos los ejercicios usando la clase DateTime.
-            - Mostrar la fecha actual en el formato “d/m/Y”
-            - Mostrar la fecha actual en el formato “dia d, mes mmmm, año yyyy, dia de la semana dd”.
-            - Mostrar la hora actual en el formato “hh:mm:ss”
-            - Mostrar los tres apartados anteriores para la fecha 29/3/2024 a 12:45.
-            - Mostrar los tres apartados anteriores para la fecha actual menos 12 días y 4 horas
+            para gestión de fecha. Se repetirán todos los ejercicios usando la clase DateTime.<br>
+            - Mostrar la fecha actual en el formato “d/m/Y” <br>
+            - Mostrar la fecha actual en el formato “dia d, mes mmmm, año yyyy, dia de la semana dd”.<br>
+            - Mostrar la hora actual en el formato “hh:mm:ss”<br>
+            - Mostrar los tres apartados anteriores para la fecha 29/3/2024 a 12:45.<br>
+            - Mostrar los tres apartados anteriores para la fecha actual menos 12 días y 4 horas<br>
             Se definirán las fechas y se visualizarán directamente en la vista. ( no se definirán en el
-            controlador)";
+            controlador)<br>";
+
+        
 
 
-        //Ejecucion de las funciones
 
+        $hoy = new DateTime();
+        $fecha = new DateTime("2024-03-29 12:45:00");
+        //primera parte
+        echo "<br><br> Hoy:<br>"; 
+        fechas($hoy);
+
+        //Segunda parte
+        echo "<br><br> Fecha:<br>"; 
+        fechas($fecha);
+
+        //Ultima parte
+        echo "<br><br>Intervalo:";
+        $intervalo = new DateInterval("P12DT4H");
+        $hoy->add($intervalo);
+        $cadena =$hoy->format('d/m/Y'); 
+        echo "<br>".$cadena;
 
         ?>
     </main>
