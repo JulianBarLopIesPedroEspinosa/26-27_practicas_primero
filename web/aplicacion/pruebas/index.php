@@ -40,14 +40,8 @@ function cuerpo()
     <br><br>
     <a href="basicas.php">Funcionamiento basico</a>   <br>
     <a href="pasopar.php">Paso parametros</a>   <br>
-    <a href="../Proyecto1/Ej1.php">Ej1 </a>   <br>
-    <a href="../Proyecto1/Ej2.php">Ej2 </a>   <br>
-    <a href="../Proyecto1/Ej3.php">Ej3 </a>   <br>
-    <a href="../Proyecto1/Ej4.php">Ej4 </a>   <br>
-    <a href="../Proyecto1/Ej5.php">Ej5 </a>   <br>
-    <a href="../Proyecto1/Ej6.php">Ej6 </a>   <br>
-    <a href="../Proyecto1/Ej7.php">Ej7 </a>   <br>
-
+    <a href="../Proyecto1/index.php">Proyecto1 </a>   <br>
+    <a href="../Proyecto2/index.php">Proyecto2 </a>   <br>
 
     </main>
 <?php

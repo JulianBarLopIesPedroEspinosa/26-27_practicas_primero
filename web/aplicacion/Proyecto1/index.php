@@ -44,13 +44,13 @@ function cuerpo()
     <main id="main">
         <br><br>
 
-        <a href="../Proyecto1/Ej1.php">Ej1 </a>   <br>
-        <a href="../Proyecto1/Ej2.php">Ej2 </a>   <br>
-        <a href="../Proyecto1/Ej3.php">Ej3 </a>   <br>
-        <a href="../Proyecto1/Ej4.php">Ej4 </a>   <br>
-        <a href="../Proyecto1/Ej5.php">Ej5 </a>   <br>
-        <a href="../Proyecto1/Ej6.php">Ej6 </a>   <br>
-        <a href="../Proyecto1/Ej7.php">Ej7 </a>   <br>
+        <a href="Ej1.php">Ej1 </a>   <br>
+        <a href="Ej2.php">Ej2 </a>   <br>
+        <a href="Ej3.php">Ej3 </a>   <br>
+        <a href="Ej4.php">Ej4 </a>   <br>
+        <a href="Ej5.php">Ej5 </a>   <br>
+        <a href="Ej6.php">Ej6 </a>   <br>
+        <a href="Ej7.php">Ej7 </a>   <br>
 
     </main>
 <?php
