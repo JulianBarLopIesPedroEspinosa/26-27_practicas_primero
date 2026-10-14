@@ -32,5 +32,3 @@ He creado dos ficheros Docker-compose. Uno solo con PHP (docker-compose.yml) y o
 Desde una terminal ejecutar el siguiente comando que activa el contenedor con el docker-compose deseeado.    
 ```docker compose -f docker-compose.yml up```  
 A partir de aquí se activará la depuración en visual basic y procedemos a depurar.   
-////////////////////////////////////////////////////////////////////////////////////////////
-Esto es la prueba de que estoy conectado al git y lo muevo aqui
