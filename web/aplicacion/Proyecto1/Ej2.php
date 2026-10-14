@@ -104,7 +104,8 @@ function cuerpo()
             echo "<br>Se ha lanzado el dado " . $num . " veces.<br>";
 
             foreach ($lanzamientos as $i => $elem) {
-                echo "el " . ($i + 1) . " ha salido " . $elem . " con un porcentaje de " . (($elem / $num) * 100) . "%<br>";
+                echo "el " . ($i + 1) . " ha salido " . $elem . " con un porcentaje de "
+                    . (($elem / $num) * 100) . "%<br>";
             };
         };
 
