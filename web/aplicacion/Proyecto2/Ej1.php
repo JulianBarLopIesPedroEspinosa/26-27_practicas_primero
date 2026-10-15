@@ -49,8 +49,15 @@ function cuerpo()
         <br><br>
 
         <?php //Ejercicio 1:
+        echo "1.- Escribe distintas cadenas usando “, ‘, HEREDOC y NOWDOC incluyendo variables, <br>
+                etiquetas html y caracteres especiales como ‘, “, á, é, ñ. Muestra las cadenas y comprueba que  <br>
+                el código fuente es legible (no se tiene una sola línea con todo seguido). Haz que se muestren  <br>
+                las etiquetas html (no se ejecuten) <br><br>";
 
-
+        $var1 = " Variable1 ";
+        $var2 = " Variable2 ";
+        
+        echo "";
 
 
         //Ejecucion de las funciones
