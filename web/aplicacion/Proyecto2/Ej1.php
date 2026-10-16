@@ -52,13 +52,21 @@ function cuerpo()
         echo "1.- Escribe distintas cadenas usando “, ‘, HEREDOC y NOWDOC incluyendo variables, <br>
                 etiquetas html y caracteres especiales como ‘, “, á, é, ñ. Muestra las cadenas y comprueba que  <br>
                 el código fuente es legible (no se tiene una sola línea con todo seguido). Haz que se muestren  <br>
-                las etiquetas html (no se ejecuten) <br><br>";
+                las etiquetas html (no se ejecuten) <br><br>".PHP_EOL;
 
         $var1 = " Variable1 ";
         $var2 = " Variable2 ";
         
-        echo "";
+        echo "Esto es una cadena con \" \" y voy añadir \" tambien \' ;:á, é, ñ {$var1} y {$var2}<br>".PHP_EOL;
+        echo 'Esto es una cadena con \' \' y voy añadir \" tambien \' ;:á, é, ñ '.$var1.' y '.$var2.' <br>'.PHP_EOL;
 
+        echo <<<fin
+        Esto es una cadena HEREDOC y voy añadir " tambien ' ;:á, é, ñ {$var1} y {$var2}<br>
+        fin.PHP_EOL;
+
+        echo <<<'fin'
+        Esto es una cadena NOWDOC y voy añadir " tambien ' ;:á, é, ñ {$var1} y {$var2}<br>
+        fin.PHP_EOL;
 
         //Ejecucion de las funciones
 

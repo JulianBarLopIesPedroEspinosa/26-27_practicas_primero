@@ -50,7 +50,9 @@ function cuerpo()
 
         <?php //Ejercicio 2:
 
+        $cadena = "Está la niña en casa";
 
+        
 
 
         //Ejecucion de las funciones
