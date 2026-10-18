@@ -57,6 +57,11 @@ function cuerpo()
                     b) A partir del código ASCII (se puede indicar un rango mayor y eliminar aquellos 
                     caracteres que no lo cumplan). <br>";
 
+
+        //Primera forma, creo un array y lo reyeno usando el metodo range, al principio lo iba a rellenar manualmente
+        // pero encontre que sepodia hacer de esa forma mejor, luego hago un bucle de que da 2o vueltas y en cada una 
+        // elige una posicion aleatoria del array y lo va concatenando en mi variable cadena
+
         $permitidos = array();
 
         // Minúsculas
@@ -72,14 +77,35 @@ function cuerpo()
             $permitidos[] = (string)$c;
         }
 
-        //Uso un metodo range que me da todo lo que hay de un rango a otro
         echo "<br>Cadena aleatoria con arrays: ";
 
         $aleatoria = "";
         for ($i = 0; $i < 20; $i++) {
-            $aleatoria += $permitidos[random_int(0, (count($permitidos) - 1))];
+            $aleatoria .= $permitidos[rand(0, (count($permitidos) - 1))];
         }
         echo $aleatoria;
+
+        //Segunda forma, Aqui hago un bucle que me genere los numeros aleatorios delimitados por el codigo ascii
+        // creo una funcion que me devolvera los valores del codigo ASCII que esten permitidos por el enunciado
+
+        function permitidos()
+        {
+            $num = 0;
+            $sw = true;
+            while ($sw) {
+                $num = rand(48, 122);
+                if ($num < 58 || ($num > 64 && $num < 91) || $num > 96) {
+                    $sw = false;
+                }
+            };
+            return chr($num);
+        };
+
+        $cadena = "";
+        for ($i = 0; $i < 20; $i++) {
+            $cadena .= permitidos();
+        }
+        echo "<br><br>Segunda parte, cadena aleatoria mediante ASCII: " . $cadena;
 
         ?>
     </main>

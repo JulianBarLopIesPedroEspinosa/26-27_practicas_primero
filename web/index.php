@@ -36,7 +36,7 @@ function cuerpo()
 ?>
     <main id="main">
         <br><br>
-        <a href="./aplicacion/pruebas/index.php">Acceso a pruebas</a>
+        <a href="./aplicacion/pruebas/index.php">Acceso a proyectos</a>
     </main>
 <?php
 }
