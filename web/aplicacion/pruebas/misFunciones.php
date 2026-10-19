@@ -14,3 +14,4 @@ function doble(int $num): int|false
         return false;
     return 2 * $num;
 }
+?>

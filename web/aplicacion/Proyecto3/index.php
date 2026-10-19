@@ -45,6 +45,8 @@ function cuerpo()
         <a href="Ej3.php">Ej3 </a>   <br>
         <a href="Ej4.php">Ej4 </a>   <br>
         <a href="Ej5.php">Ej5 </a>   <br>
+        <a href="Ej6.php">Ej6 </a>   <br>
+        <a href="Ej7.php">Ej7 </a>   <br>
 
     </main>
 <?php
