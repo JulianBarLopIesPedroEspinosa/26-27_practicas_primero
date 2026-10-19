@@ -67,10 +67,7 @@ function cuerpo()
         echo <<<'fin'
         Esto es una cadena NOWDOC y voy añadir " tambien ' ;:á, é, ñ {$var1} y {$var2}<br>
         fin.PHP_EOL;
-
-        //Ejecucion de las funciones
-
-
+  
         ?>
     </main>
 <?php
