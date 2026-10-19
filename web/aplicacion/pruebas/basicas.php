@@ -15,7 +15,7 @@ $barra = [
         "ADICIONAL" => ">>"
     ],
     [
-        "TEXTO" => "Menu",
+        "TEXTO" => "Pruebas",
         "ENLACE" => "/aplicacion/pruebas/index.php"
     ],
     [

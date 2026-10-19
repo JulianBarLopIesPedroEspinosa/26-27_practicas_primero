@@ -9,7 +9,7 @@ $barra = [
         "ADICIONAL" => ">>"
     ],
     [
-        "TEXTO" => "Menu",
+        "TEXTO" => "Pruebas",
         "ENLACE" => "index.php"
     ]
 ];
@@ -32,11 +32,9 @@ function cuerpo()
 ?>
     <br><br>
     <main id="main">
-        Menu
         <br><br>
         <a href="basicas.php">Funcionamiento basico</a> <br>
-        <a href="../Proyecto1/index.php">Proyecto1 </a> <br>
-        <a href="../Proyecto2/index.php">Proyecto2 </a> <br>
+        
 
     </main>
 <?php

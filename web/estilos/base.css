@@ -24,13 +24,18 @@ body {
     font-size: 1.3em;
     font-style: italic;
 }
-#barraUbicacion{
+#barraLogin{
+    
     background-color: #80fdffdc;
     border: 2px, solid,teal ;
     border-radius: 7px;
     padding: 3px;
-    margin: 5px;
+    margin: 15px;
     color: blue;
+}
+#barraLogin li {
+  display: inline-block;
+  margin-right: 20px;
 }
 
 #main{

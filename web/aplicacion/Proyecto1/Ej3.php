@@ -7,16 +7,13 @@ $barra = [
         "TEXTO" => "inicio",
         "ENLACE" => "/index.php",
     ],
-    [
-        "TEXTO" => "Menu",
-        "ENLACE" => "/aplicacion/pruebas/index.php"
-    ],
+    
     [
         "TEXTO" => "Proyecto1",
         "ENLACE" => "/aplicacion/Proyecto1/index.php"
     ],
     [
-        "TEXTO" => "Ej?",
+        "TEXTO" => "Ej3",
         "ENLACE" => "/aplicacion/Proyecto1/Ej3.php"
     ]
 ];
