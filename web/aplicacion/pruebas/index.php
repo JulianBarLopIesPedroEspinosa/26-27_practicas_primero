@@ -34,7 +34,7 @@ function cuerpo()
     <main id="main">
         <br><br>
         <a href="basicas.php">Funcionamiento basico</a> <br>
-        
+        <a href="indexFunciones.php">Funciones</a> <br>        
 
     </main>
 <?php

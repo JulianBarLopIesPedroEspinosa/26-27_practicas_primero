@@ -68,7 +68,7 @@ function inicioCuerpo(string $cabecera, array $ubicacion)
                     <li><a href="/index.php">Inicio</a></li>
                     <li><a href="/aplicacion/Proyecto1/index.php">Proyecto1</a></li>
                     <li><a href="/aplicacion/Proyecto2/index.php">Proyecto2</a></li>
-
+                    <li><a href="/aplicacion/Proyecto3/index.php">Proyecto3</a></li>
                 </ul>
             </div>
             <div id="barraUbicacion">
@@ -104,7 +104,7 @@ function inicioCuerpo(string $cabecera, array $ubicacion)
             <footer>
                 <hr width="90%" />
                 <div>
-                    &copy; Copyright by Profesor
+                    &copy; Copyright by Julián Barreno
                 </div>
             </footer>
         </div>
