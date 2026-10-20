@@ -59,11 +59,11 @@ function cuerpo()
 
         // Primer valor: 15 caracteres, rellenando con ceros
         $numero1 = number_format($valor1, 1, ',', '');
-        $numero1 = str_pad($numero1, 15, '0', STR_PAD_LEFT); //Uso str_pad para poder rellenar hasta alcanzar el formato deseado
+        $numero1 = mb_str_pad($numero1, 15, '0', STR_PAD_LEFT); //Uso str_pad para poder rellenar hasta alcanzar el formato deseado
 
         // Segundo valor: 15 caracteres, rellenando con espacios
         $numero2 = number_format($valor2, 2, ',', '.');
-        $numero2 = str_pad($numero2, 15, ' ', STR_PAD_LEFT);
+        $numero2 = mb_str_pad($numero2, 15, ' ', STR_PAD_LEFT);
 
         //Para poder mostrar los espacios tengo que usar este metodo porque sino el metodo str_pad no los muestra ni aunque usemos &nbsp
         echo "El primer valor -$numero1-, el segundo valor -" . str_replace(' ', '&nbsp', $numero2) . "-";

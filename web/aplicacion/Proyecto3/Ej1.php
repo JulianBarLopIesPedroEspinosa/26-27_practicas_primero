@@ -1,5 +1,7 @@
 <?php
 include_once(dirname(__FILE__) . "/../../cabecera.php");
+
+include_once("./libreria.php");
 //Controlador
 $barra = [
 
@@ -18,6 +20,15 @@ $barra = [
     ]
 ];
 
+$miArray =[];
+$miCadena="";
+$miNumero=0;
+$contador=0;
+
+//TO DO
+for($i=0;$i<10;$i++){
+    cuentaVeces($miArray,$miCadena,$i,$contador);
+}
 
 //dibuja la plantilla de la vista
 inicioCabecera("Ej1");

@@ -56,17 +56,17 @@ function cuerpo()
             echo $cadena[$i] . "<br>";
         };
 
-        for ($i = 0; $i < strlen($cadena); $i++) {
+        for ($i = 0; $i < mb_strlen($cadena); $i++) {
             echo str_repeat("&nbsp", $i) . substr($cadena, $i, 1) . "<br>" . PHP_EOL;
         };
 
         //Esta es la unica de las tres que trata los multiBytes
-        for ($i = 0; $i < strlen($cadena); $i++) {
+        for ($i = 0; $i < mb_strlen($cadena); $i++) {
             echo str_repeat("&nbsp", $i) . mb_substr($cadena, $i, 1) . "<br>" . PHP_EOL;
         };
 
         //Mostrar al reves
-        for ($i = strlen($cadena) - 1; $i >= 0; $i--) {
+        for ($i = mb_strlen($cadena) - 1; $i >= 0; $i--) {
             if ($i % 2 == 0) {
                 echo str_repeat("&nbsp", $i) . mb_strtoupper(mb_substr($cadena, $i, 1)) . "<br>" . PHP_EOL;
             } else {

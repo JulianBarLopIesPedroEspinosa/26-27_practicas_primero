@@ -61,6 +61,8 @@ function cuerpo()
 
         $permitidos = array();
 
+        $caracteres = mb_str_split("qwertyuioplkjhgfdsazxcvbnmMNBVCXZLKJHGFDSAQWERTYUIOP1234567890"); //Otra forma mejor y menos IA
+    
         // Minúsculas
         foreach (range('a', 'z') as $c) {
             $permitidos[] = $c;

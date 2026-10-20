@@ -13,6 +13,11 @@
 /**
  * En esta funcion se nos pasa el array por referencia para poder cambiarlo y que se refleje fuera de la funcion
  * y lo mismo hacemos con el num2 para poder "devolverlo", y hacemos la condicion al inicio 
+ * @param array &array Pasamos el array por referencia
+ * @param string $str La cadena de indice
+ * @param int $num1 Primer numero el cual se guardara en el array posicion del indice string
+ * @param int &$num2 Se pasa una variable numerica donde se guardaran las llamadas a la funcion
+ * @return true|false Devolvemos false si $str es 2daw o primera
  */
 function cuentaVeces(array &$array, string $str, int $num1, int &$num2)
 {
