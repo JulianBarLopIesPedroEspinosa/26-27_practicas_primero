@@ -58,3 +58,45 @@ function generarCadena(int $num=10){
     };
     return $cadena;
 };
+
+
+/**
+ * 3.- Función operaciones(). Esta función recibe al menos tres parámetros. El primero (entero) es el
+ * tipo de operación. Los demás son valores numéricos (los operandos). El tipo de operación puede ser
+ * 1, suma todos los operandos
+ * 2, al primer operando se restan el resto
+ * 3, multiplicación de todos los operandos.
+ * En cualquier otro caso se suman los operandos que ocupan las posiciones pares y se restan
+ * los de las posiciones impares (el primer operando es 1).
+ * Operaciones(1,2,5,7,3,4); //haría la suma de 2+5+7+3+4
+ * Operaciones(5,2,5,7,3,4); //Sumaria suma las posiciones pares (5+3), las posiciones impares
+ * (2+7+4), y se restan los dos.
+ */
+
+function operaciones(int $select,float $num1,float $num2,float ...$numeros){
+    switch($select){
+        case 1:
+            $suma =$num1 + $num2;
+            foreach($numeros as $elem){$suma += $elem;};
+            return $suma;
+        case 2:
+            $resta = $num1 - $num2;
+            foreach($numeros as $elem){$resta -= $elem;};
+            return $resta;
+        case 3:
+            $multi = $num1 * $num2;
+            foreach($numeros as $elem){$multi *= $elem;};
+            return $multi;
+        default:
+            $impar = $num1;
+            $par = $num2;
+            foreach($numeros as $i => $elem){
+                if(($i+1)%2==0)
+                    $par+=$elem;
+                else
+                    $impar+=$elem;
+            };
+            return $par - $impar;
+    }
+};
+
