@@ -17,9 +17,10 @@
  * @param string $str La cadena de indice
  * @param int $num1 Primer numero el cual se guardara en el array posicion del indice string
  * @param int &$num2 Se pasa una variable numerica donde se guardaran las llamadas a la funcion
- * @return true|false Devolvemos false si $str es 2daw o primera
+ * @return bool Devolvemos false si $str es 2daw o primera
+ * @author Julian Barreno
  */
-function cuentaVeces(array &$array, string $str, int $num1, int &$num2)
+function cuentaVeces(array &$array, string $str, int $num1, int &$num2): bool
 {
     if ($str === "2daw" || $str === "primera") {
         return false;
@@ -33,28 +34,28 @@ function cuentaVeces(array &$array, string $str, int $num1, int &$num2)
 
 
 
-
-
 /**2.- Función generarCadena(). 
  * A esta función se le pasa un parámetro con valor por defecto 10 y se
  * encarga de devolver una cadena de longitud la indicada cuyos caracteres son generados de forma
  * aleatoria (caracteres válidos: letras mayúsculas, minúsculas y números). 
  * Devolverá false si se ha indicado un número negativo o igual a 0.
  * generarCadena(7);//crea la cadena de 7 caracteres “AcG_%15”
-*/
+ */
 
 /**
  * Creamos un array con todas las posibilidades y en un bucle que recorremos tantas veces como se nos indique en el parametro
  * iremos rellenando la cadena con caracteres aleatorios
  * @param int $num defaul 10
  * @return string|false si todo sale bien devuelve la cadena aleatoria sino devuelve false si se mando como parametro 0 o menos
+ * @author Julian Barreno
  */
-function generarCadena(int $num=10){
-    if($num<=0) return false;
+function generarCadena(int $num = 10): string
+{
+    if ($num <= 0) return false;
     $caracteres = mb_str_split("qwertyuioplkjhgfdsazxcvbnmMNBVCXZLKJHGFDSAQWERTYUIOP1234567890");
-    $cadena="";
-    for($i = 0; $i<$num ;$i++){
-        $cadena.= $caracteres[rand(0,count($caracteres)-1)];
+    $cadena = "";
+    for ($i = 0; $i < $num; $i++) {
+        $cadena .= $caracteres[rand(0, count($caracteres) - 1)];
     };
     return $cadena;
 };
@@ -73,30 +74,71 @@ function generarCadena(int $num=10){
  * (2+7+4), y se restan los dos.
  */
 
-function operaciones(int $select,float $num1,float $num2,float ...$numeros){
-    switch($select){
+/**
+ * Funcion que segun el primer numero que manden hara una ser de cosas, funciona como un menu
+ * @param int $select Este marca que accion se llevara acabo
+ * @param float $num1 Primer numero
+ * @param float $num2 Segundo numero
+ * @param float $numeros Sera el array de todos los demas numeros extra que me manden
+ * @return float Segun el caso devuelve un resultado distinto, pero siempre es float
+ * @author Julian Barreno
+ */
+function operaciones(int $select, float $num1, float $num2, float ...$numeros): float
+{
+    switch ($select) {
         case 1:
-            $suma =$num1 + $num2;
-            foreach($numeros as $elem){$suma += $elem;};
+            $suma = $num1 + $num2;
+            foreach ($numeros as $elem) {
+                $suma += $elem;
+            };
             return $suma;
         case 2:
             $resta = $num1 - $num2;
-            foreach($numeros as $elem){$resta -= $elem;};
+            foreach ($numeros as $elem) {
+                $resta -= $elem;
+            };
             return $resta;
         case 3:
             $multi = $num1 * $num2;
-            foreach($numeros as $elem){$multi *= $elem;};
+            foreach ($numeros as $elem) {
+                $multi *= $elem;
+            };
             return $multi;
         default:
             $impar = $num1;
             $par = $num2;
-            foreach($numeros as $i => $elem){
-                if(($i+1)%2==0)
-                    $par+=$elem;
+            foreach ($numeros as $i => $elem) {
+                if (($i + 1) % 2 == 0)
+                    $par += $elem;
                 else
-                    $impar+=$elem;
+                    $impar += $elem;
             };
             return $par - $impar;
     }
 };
 
+
+
+/**
+ * 4.- Función devuelve(). Esta función recibe como parámetros tres números (enteros) y devuelve la
+ * suma de los tres valores en el primer parámetro y como resultado de la función el producto de los
+ * tres valores. Los dos últimos parámetros tendrán definidos valor por defecto (el que queráis).
+ * $valor=7;
+ * devuelve($valor,4) //$valor valdrá 7+4+10 y se devuelve 7*4*10 (10 es el valor por defecto que
+ * le he puesto al tercer parámetro).
+ * Hacer varias llamadas a la función indicando:
+ * - Los tres parámetros
+ * - El primer parámetro únicamente
+ * - El primer y el segundo parámetro
+ * - El primer y el tercer parámetro (ojo, el segundo parámetro no se indica)
+ */
+
+/**
+ * 
+ */
+function devuelve(int &$num1, int $num2 = 5, int $num3 = 10): int
+{
+    $aux = $num1 * $num2 * $num3;
+    $num1 += $num2 + $num3;
+    return $aux;
+}
