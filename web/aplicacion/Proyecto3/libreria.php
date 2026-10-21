@@ -13,7 +13,7 @@
 /**
  * En esta funcion se nos pasa el array por referencia para poder cambiarlo y que se refleje fuera de la funcion
  * y lo mismo hacemos con el num2 para poder "devolverlo", y hacemos la condicion al inicio 
- * @param array &array Pasamos el array por referencia
+ * @param array &$array Pasamos el array por referencia
  * @param string $str La cadena de indice
  * @param int $num1 Primer numero el cual se guardara en el array posicion del indice string
  * @param int &$num2 Se pasa una variable numerica donde se guardaran las llamadas a la funcion
@@ -49,7 +49,7 @@ function cuentaVeces(array &$array, string $str, int $num1, int &$num2): bool
  * @return string|false si todo sale bien devuelve la cadena aleatoria sino devuelve false si se mando como parametro 0 o menos
  * @author Julian Barreno
  */
-function generarCadena(int $num = 10): string
+function generarCadena(int $num = 10): string|bool
 {
     if ($num <= 0) return false;
     $caracteres = mb_str_split("qwertyuioplkjhgfdsazxcvbnmMNBVCXZLKJHGFDSAQWERTYUIOP1234567890");
@@ -134,7 +134,13 @@ function operaciones(int $select, float $num1, float $num2, float ...$numeros): 
  */
 
 /**
- * 
+ * Funcion simple que pide el ejercicio, tenemos en cuenta la creacion de una variable aux para que no se scambie el
+ *  resultado enviado al hacer primero la suma en $num1
+ * @param int &$num1 Variable por referencia
+ * @param int $num2 Default 5
+ * @param int $num3 Default 10
+ * @return int
+ * @author Julian Barreno
  */
 function devuelve(int &$num1, int $num2 = 5, int $num3 = 10): int
 {
@@ -142,3 +148,25 @@ function devuelve(int &$num1, int $num2 = 5, int $num3 = 10): int
     $num1 += $num2 + $num3;
     return $aux;
 }
+
+
+
+/**
+ * 5.- Se tienen las funciones suma, resta y multiplicacion que reciben cada una dos parámetros
+ * numéricos (entero) y que devuelven el resultado de la operación que indica su nombre sobre los parámetros.
+ *      Tenemos la Función hacerOperacion que recibe tres parámetros. El primero es una cadena
+ * que puede ser suma, resta o multiplicacion. Los otros dos son los operandos. Esta función se
+ * encargará de devolver el resultado de ejecutar la “cadena” con los operandos usando una variablefunción para llamar
+ * a la operación. Hay que comprobar indicando una operación correcta 
+ * (devuelve false si la operación no es válida).
+ * hacerOperacion(“resta”,3,1) //devuelve 3-1. No se llama directamente a la función resta, se
+ * tiene una variable función para ello
+ */
+
+function suma(int $num1,int $num2){return $num1+$num2;}
+
+function resta(int $num1,int $num2){return $num1-$num2;}
+
+function multiplicacion(int $num1,int $num2){return $num1*$num2;}
+
+function hacerOperacion(string $str,int $num1, int $num2){return $str($num1,$num2);}
