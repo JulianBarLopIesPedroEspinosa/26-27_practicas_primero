@@ -22,13 +22,14 @@
  */
 function cuentaVeces(array &$array, string $str, int $num1, int &$num2): bool
 {
+    static $contador = 1;
+    $num2 = $contador;
+    $contador++;
     if ($str === "2daw" || $str === "primera") {
         return false;
     }
-    static $contador = 1;
     $array[$str] = $num1;
-    $num2 = $contador;
-    $contador++;
+
     return true;
 };
 
@@ -49,7 +50,7 @@ function cuentaVeces(array &$array, string $str, int $num1, int &$num2): bool
  * @return string|false si todo sale bien devuelve la cadena aleatoria sino devuelve false si se mando como parametro 0 o menos
  * @author Julian Barreno
  */
-function generarCadena(int $num = 10): string|bool
+function generarCadena(int $num = 10): string|false
 {
     if ($num <= 0) return false;
     $caracteres = mb_str_split("qwertyuioplkjhgfdsazxcvbnmMNBVCXZLKJHGFDSAQWERTYUIOP1234567890");
@@ -80,7 +81,7 @@ function generarCadena(int $num = 10): string|bool
  * @param int $select Este marca que accion se llevara acabo
  * @param float $num1 Primer numero
  * @param float $num2 Segundo numero
- * @param float $numeros Sera el array de todos los demas numeros extra que me manden
+ * @param float ...$numeros Sera el array de todos los demas numeros extra que me manden
  * @return float Segun el caso devuelve un resultado distinto, pero siempre es float
  * @author Julian Barreno
  */
@@ -164,13 +165,16 @@ function devuelve(int &$num1, int $num2 = 5, int $num3 = 10): int
  * tiene una variable función para ello
  */
 
-function suma(int $num1,int $num2){return $num1+$num2;}
+function suma(int $num1, int $num2){return $num1 + $num2;}
 
-function resta(int $num1,int $num2){return $num1-$num2;}
+function resta(int $num1, int $num2){return $num1 - $num2;}
 
-function multiplicacion(int $num1,int $num2){return $num1*$num2;}
+function multiplicacion(int $num1, int $num2){return $num1 * $num2;}
 
-function hacerOperacion(string $str,int $num1, int $num2){return function_exists($str)?$str($num1,$num2):false;}
+function hacerOperacion(string $str, int $num1, int $num2)
+{
+    return in_array($str, ["suma", "resta", "multiplicacion"]) ? $str($num1, $num2) : false;
+}
 
 
 
@@ -183,7 +187,10 @@ function hacerOperacion(string $str,int $num1, int $num2){return function_exists
  * Repetir las llamadas, definiendo las 3 funciones como anónimas (se asignan a variables)
  */
 
-function llamadaAFuncion(int $num1, int $num2, callable $fn){ return $fn($num1,$num2);}
+function llamadaAFuncion(int $num1, int $num2, callable $fn)
+{
+    return $fn($num1, $num2);
+}
 
 
 
@@ -195,4 +202,7 @@ function llamadaAFuncion(int $num1, int $num2, callable $fn){ return $fn($num1,$
  * Ordenar($vector);//el vector debe quedar (“caminos”,”grande”,”uno”,”a”)
  */
 
-function ordenar(array &$arr){return uasort($arr,fn($a, $b) => mb_strlen($b)<=>mb_strlen($a));}
+function ordenar(array &$arr)
+{
+    return usort($arr, fn($a, $b) => mb_strlen($b) <=> mb_strlen($a));
+}
