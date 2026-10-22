@@ -59,7 +59,8 @@ function cuerpo()
         //Ejecucion de las funciones
         echo '<br>hacerOperacion("suma",1,2) => ' . hacerOperacion("suma", 1, 2) .
                 '<br>hacerOperacion("resta",10,5) => ' . hacerOperacion("resta", 10, 5) .
-                '<br>hacerOperacion("multiplicacion",3,3) => ' . hacerOperacion("multiplicacion", 3, 3);
+                '<br>hacerOperacion("multiplicacion",3,3) => ' . hacerOperacion("multiplicacion", 3, 3).
+                '<br>hacerOperacion("false",3,3) => ' . hacerOperacion("false", 3, 3);
 
         ?>
     </main>

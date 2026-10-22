@@ -61,6 +61,7 @@ function generarCadena(int $num = 10): string|bool
 };
 
 
+
 /**
  * 3.- Función operaciones(). Esta función recibe al menos tres parámetros. El primero (entero) es el
  * tipo de operación. Los demás son valores numéricos (los operandos). El tipo de operación puede ser
@@ -169,4 +170,29 @@ function resta(int $num1,int $num2){return $num1-$num2;}
 
 function multiplicacion(int $num1,int $num2){return $num1*$num2;}
 
-function hacerOperacion(string $str,int $num1, int $num2){return $str($num1,$num2);}
+function hacerOperacion(string $str,int $num1, int $num2){return function_exists($str)?$str($num1,$num2):false;}
+
+
+
+/**
+ * 6.- Crear la función llamadaAFuncion que recibe tres operandos (entero, entero y callable) y que
+ * devuelve un entero que es el resultado de llamar al parámetro callback con los otros parámetros.
+ * Llamar a la función llamadaAFuncion 3 veces pasando como parámetro de callback funciones de
+ * flecha distintas que tu definas
+ *  llamadaAFuncion(1,2,fn($a,$b)=>$a+$b)
+ * Repetir las llamadas, definiendo las 3 funciones como anónimas (se asignan a variables)
+ */
+
+function llamadaAFuncion(int $num1, int $num2, callable $fn){ return $fn($num1,$num2);}
+
+
+
+/**
+ * 7.- Función ordenar(): A esta función se le pasa un array y lo ordena mediante una llamada a usort,
+ * al que se indicará como función callback una función anónima que ordenará en orden descendente
+ * según el número de caracteres de cada elemento.
+ * $vector=array((“uno”,“grande”,“caminos”,”a”)
+ * Ordenar($vector);//el vector debe quedar (“caminos”,”grande”,”uno”,”a”)
+ */
+
+function ordenar(array &$arr){return uasort($arr,fn($a, $b) => mb_strlen($b)<=>mb_strlen($a));}
