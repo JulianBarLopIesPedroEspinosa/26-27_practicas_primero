@@ -14,10 +14,10 @@ body {
     padding: 5px;
 }
 #logo{
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
-    margin: 15px;
+    margin: 10px;
 }
 
 #cabecera #titulo{

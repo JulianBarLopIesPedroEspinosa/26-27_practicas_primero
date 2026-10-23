@@ -165,13 +165,38 @@ function devuelve(int &$num1, int $num2 = 5, int $num3 = 10): int
  * tiene una variable función para ello
  */
 
-function suma(int $num1, int $num2){return $num1 + $num2;}
+/**
+ * Tres funciones simples y autodescriptivas con los mismos parametros
+ * @param int $num1
+ * @param int $num2
+ * @return int 
+ * @author Julian Barreno
+ */
+function suma(int $num1, int $num2): int
+{
+    return $num1 + $num2;
+}
 
-function resta(int $num1, int $num2){return $num1 - $num2;}
+function resta(int $num1, int $num2): int
+{
+    return $num1 - $num2;
+}
 
-function multiplicacion(int $num1, int $num2){return $num1 * $num2;}
+function multiplicacion(int $num1, int $num2): int
+{
+    return $num1 * $num2;
+}
 
-function hacerOperacion(string $str, int $num1, int $num2)
+/**
+ * Esta funcion llama a la funcion correspondiente a la cadena que le llegue como parametro, comporbando que exista
+ * y si no devuelve false
+ * @param string $str
+ * @param int $num1
+ * @param int $num2
+ * @return int|false
+ * @author Julian Barreno
+ */
+function hacerOperacion(string $str, int $num1, int $num2): int|false
 {
     return in_array($str, ["suma", "resta", "multiplicacion"]) ? $str($num1, $num2) : false;
 }
@@ -187,7 +212,14 @@ function hacerOperacion(string $str, int $num1, int $num2)
  * Repetir las llamadas, definiendo las 3 funciones como anónimas (se asignan a variables)
  */
 
-function llamadaAFuncion(int $num1, int $num2, callable $fn)
+/**
+ * Funcion que ejecuta la funcion anonima pasada por parametro
+ * @param int $num1
+ * @param int $num2
+ * @param callable $fn
+ * @return int
+ */
+function llamadaAFuncion(int $num1, int $num2, callable $fn): int
 {
     return $fn($num1, $num2);
 }
@@ -202,7 +234,13 @@ function llamadaAFuncion(int $num1, int $num2, callable $fn)
  * Ordenar($vector);//el vector debe quedar (“caminos”,”grande”,”uno”,”a”)
  */
 
-function ordenar(array &$arr)
+/**
+ * Funcion que ordena de forma descente segun el tamaño de la cadena que le llega del array usando el metodo usort
+ * @param array &$arr
+ * @return array 
+ * @author Julian Barreno
+ */
+function ordenar(array &$arr) 
 {
     return usort($arr, fn($a, $b) => mb_strlen($b) <=> mb_strlen($a));
 }
