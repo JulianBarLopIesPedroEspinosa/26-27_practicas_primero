@@ -11,18 +11,17 @@ $barra = [
         "TEXTO" => "Proyecto4",
     ],
     [
-        "TEXTO" => "Proyecto4",
-        "ENLACE" => "/aplicacion/Proyecto4/index.php"
+        "TEXTO" => "Libreria Clases",
     ]
 ];
 
 $instrumentoBase = new InstrumentoBase;
 
 //dibuja la plantilla de la vista
-inicioCabecera("Proyecto4");
+inicioCabecera("Libreria Clases");
 cabecera();
 finCabecera();
-inicioCuerpo("Proyecto4", $barra);
+inicioCuerpo("Libreria Clases", $barra);
 cuerpo();  //llamo a la vista
 finCuerpo();
 // **********************************************************

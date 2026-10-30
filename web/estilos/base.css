@@ -1,72 +1,42 @@
 @charset "UTF-8";
 
 /* =========================================================
-   base.css — Estilo "isla acogedora" para todas las prácticas
-   Inspirado en los juegos de vida en una isla: césped con
-   flores, cielo con nubes, carteles de madera, bocadillos de
-   diálogo y playa con olas.
+   base.css — Estilo profesional para todas las prácticas
    Mantiene los mismos ids y clases que usa plantilla.php
    ========================================================= */
 
-@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
 
-/* ---------- Variables (cambia aquí los colores) ---------- */
+/* ---------- Variables ---------- */
 :root {
-    /* Naturaleza */
-    --cesped:        #8fd16a;
-    --cesped-osc:    #63b04a;
-    --hoja:          #3f8f3a;
-    --cielo:         #a8e3f0;
-    --cielo-claro:   #e3f7fb;
-    --agua:          #6fcbdc;
-    --agua-claro:    #a9e4ee;
-    --arena:         #f7ecd0;
-    --arena-osc:     #e8d6a8;
+    --fondo:        #f3f5f8;
+    --superficie:   #ffffff;
+    --superficie-2: #f8fafc;
+    --borde:        #e2e8f0;
+    --borde-fuerte: #cbd5e1;
 
-    /* Papel y madera */
-    --papel:         #fffaf0;
-    --papel-2:       #fdf3dc;
-    --madera:        #b8864f;
-    --madera-osc:    #7a5634;
+    --texto:        #1e293b;
+    --texto-suave:  #64748b;
+    --texto-tenue:  #94a3b8;
 
-    /* Texto */
-    --texto:         #6b5236;   /* marrón cálido en vez de negro */
-    --texto-suave:   #9a8164;
+    --oscuro:       #0f172a;   /* cabecera */
+    --oscuro-2:     #1e293b;   /* menú */
 
-    /* Acentos pastel */
-    --amarillo:      #ffd65c;
-    --amarillo-osc:  #e0a92e;
-    --menta:         #c9f0d6;
-    --rosa:          #ffc8d6;
-    --lila:          #d9ccff;
-    --celeste:       #c4ecff;
-    --naranja:       #ffd2a6;
-    --coral:         #f2836b;
-    --coral-fondo:   #ffe9e2;
+    --acento:       #2563eb;   /* azul */
+    --acento-osc:   #1d4ed8;
+    --acento-claro: #eff6ff;
 
-    --radio:         30px;
-    --radio-peq:     18px;
-    --sombra:        0 12px 0 rgba(122, 86, 52, .14), 0 26px 44px rgba(60, 110, 40, .25);
+    --exito:        #15803d;
+    --exito-fondo:  #f0fdf4;
+    --error:        #b91c1c;
+    --error-fondo:  #fef2f2;
 
-    --fuente:        "Nunito", "Arial Rounded MT Bold", "Varela Round", "Segoe UI", system-ui, sans-serif;
-    --fuente-titulo: "Fredoka", "Nunito", "Arial Rounded MT Bold", system-ui, sans-serif;
-    --fuente-mono:   "Cascadia Code", "Fira Code", Consolas, monospace;
+    --radio:        8px;
+    --sombra:       0 1px 2px rgba(15, 23, 42, .06), 0 1px 3px rgba(15, 23, 42, .08);
+    --sombra-media: 0 4px 12px rgba(15, 23, 42, .08);
 
-    /* ---- Dibujos SVG reutilizables ---- */
-    /* Césped con florecitas y matas de hierba */
-    --img-cesped: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cg fill='none' stroke='%2378c157' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M18 30l4-9 4 9M22 30v-4'/%3E%3Cpath d='M86 92l4-9 4 9'/%3E%3Cpath d='M70 20l3-7 3 7'/%3E%3Cpath d='M20 98l3-7 3 7'/%3E%3C/g%3E%3Cg transform='translate(60 58)'%3E%3Ccircle r='4' cx='0' cy='-6' fill='%23fff'/%3E%3Ccircle r='4' cx='6' cy='-1' fill='%23fff'/%3E%3Ccircle r='4' cx='4' cy='6' fill='%23fff'/%3E%3Ccircle r='4' cx='-4' cy='6' fill='%23fff'/%3E%3Ccircle r='4' cx='-6' cy='-1' fill='%23fff'/%3E%3Ccircle r='3' fill='%23ffd65c'/%3E%3C/g%3E%3Cg transform='translate(102 26)'%3E%3Ccircle r='3.2' cx='0' cy='-5' fill='%23ffb3c7'/%3E%3Ccircle r='3.2' cx='5' cy='-1' fill='%23ffb3c7'/%3E%3Ccircle r='3.2' cx='3' cy='5' fill='%23ffb3c7'/%3E%3Ccircle r='3.2' cx='-3' cy='5' fill='%23ffb3c7'/%3E%3Ccircle r='3.2' cx='-5' cy='-1' fill='%23ffb3c7'/%3E%3Ccircle r='2.4' fill='%23fff3a8'/%3E%3C/g%3E%3Cg transform='translate(30 78)'%3E%3Ccircle r='3' cx='0' cy='-4' fill='%23fff38a'/%3E%3Ccircle r='3' cx='4' cy='0' fill='%23fff38a'/%3E%3Ccircle r='3' cx='0' cy='4' fill='%23fff38a'/%3E%3Ccircle r='3' cx='-4' cy='0' fill='%23fff38a'/%3E%3Ccircle r='2' fill='%23f2a33a'/%3E%3C/g%3E%3C/svg%3E");
-
-    /* Nube */
-    --img-nube: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='60'%3E%3Cg fill='%23fff'%3E%3Cellipse cx='40' cy='38' rx='30' ry='18'/%3E%3Cellipse cx='72' cy='28' rx='30' ry='24'/%3E%3Cellipse cx='102' cy='38' rx='28' ry='17'/%3E%3Crect x='30' y='36' width='84' height='20' rx='10'/%3E%3C/g%3E%3C/svg%3E");
-
-    /* Hoja (para la lluvia de hojas) */
-    --img-hojas: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cg%3E%3Cg transform='translate(60 40) rotate(30)'%3E%3Cpath d='M0 0C10-10 24-8 26 0C24 8 10 10 0 0Z' fill='%2389c95e'/%3E%3Cpath d='M2 0H22' stroke='%235da443' stroke-width='1.5'/%3E%3C/g%3E%3Cg transform='translate(300 120) rotate(-40)'%3E%3Cpath d='M0 0C10-10 24-8 26 0C24 8 10 10 0 0Z' fill='%23f6b04a'/%3E%3Cpath d='M2 0H22' stroke='%23d98a2b' stroke-width='1.5'/%3E%3C/g%3E%3Cg transform='translate(180 260) rotate(80)'%3E%3Cpath d='M0 0C10-10 24-8 26 0C24 8 10 10 0 0Z' fill='%23a8d872'/%3E%3Cpath d='M2 0H22' stroke='%2370b04b' stroke-width='1.5'/%3E%3C/g%3E%3Cg transform='translate(350 340) rotate(10)'%3E%3Cpath d='M0 0C8-8 19-6 21 0C19 6 8 8 0 0Z' fill='%23ffc0cf'/%3E%3C/g%3E%3Cg transform='translate(40 330) rotate(-70)'%3E%3Cpath d='M0 0C8-8 19-6 21 0C19 6 8 8 0 0Z' fill='%23e98d5c'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-
-    /* Hojita sola (iconos) */
-    --img-hojita: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 20C4 9 11 4 21 3C20 13 15 20 4 20Z' fill='%2363b04a'/%3E%3Cpath d='M5 19L15 9' stroke='%23fff' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");
-
-    /* Conchas y estrellas de mar para la playa */
-    --img-playa: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='70'%3E%3Cpath transform='translate(30 40) scale(.7)' d='M0-12L3.5-4 12-3.7 5.4 1.8 7.6 10 0 5.4-7.6 10-5.4 1.8-12-3.7-3.5-4Z' fill='%23f6a98a'/%3E%3Cg transform='translate(130 30)'%3E%3Cpath d='M-8 4A8 8 0 0 1 8 4Z' fill='%23fbd9c4'/%3E%3Cpath d='M0 4V-3M-4 4L-3-2M4 4L3-2' stroke='%23e9b597' stroke-width='1.2'/%3E%3C/g%3E%3Ccircle cx='90' cy='55' r='2' fill='%23e3cf9f'/%3E%3Ccircle cx='160' cy='60' r='1.6' fill='%23e3cf9f'/%3E%3Ccircle cx='70' cy='18' r='1.6' fill='%23e3cf9f'/%3E%3C/svg%3E");
+    --fuente:       "Inter", "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+    --fuente-mono:  "JetBrains Mono", "Cascadia Code", Consolas, "Courier New", monospace;
 }
 
 /* ---------- Base ---------- */
@@ -78,60 +48,30 @@
 
 html {
     font-size: 16px;
-    scrollbar-color: var(--cesped-osc) var(--arena);
+    -webkit-font-smoothing: antialiased;
 }
 
 body {
-    position: relative;
     margin: 0;
-    padding: 36px 16px 56px;
+    padding: 0 0 48px;
     min-height: 100vh;
     font-family: var(--fuente);
-    font-weight: 700;
-    line-height: 1.7;
+    font-size: .95rem;
+    line-height: 1.65;
     color: var(--texto);
-    background-color: var(--cesped);
-    background-image: var(--img-cesped);
-    background-size: 120px 120px;
+    background-color: var(--fondo);
     overflow-x: hidden;
 }
 
-/* Lluvia de hojas en el fondo */
-body::before {
-    content: "";
-    position: fixed;
-    inset: -400px 0 0 0;
-    background-image: var(--img-hojas);
-    background-size: 400px 400px;
-    opacity: .85;
-    pointer-events: none;
-    z-index: 0;
-}
-
-/* Barra de scroll */
-::-webkit-scrollbar {
-    width: 14px;
-}
-
-::-webkit-scrollbar-track {
-    background: var(--arena);
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--cesped-osc);
-    border: 3px solid var(--arena);
-    border-radius: 999px;
-}
-
 a {
-    color: var(--hoja);
+    color: var(--acento);
     text-decoration: none;
-    font-weight: 800;
-    transition: color .2s, background-color .2s, transform .25s, box-shadow .2s;
 }
 
 a:hover {
-    color: var(--cesped-osc);
+    color: var(--acento-osc);
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }
 
 img {
@@ -140,129 +80,83 @@ img {
 
 hr {
     border: none;
-    border-top: 3px dotted var(--arena-osc);
+    border-top: 1px solid var(--borde);
 }
 
 ::selection {
-    background: var(--amarillo);
-    color: var(--madera-osc);
+    background: #bfdbfe;
 }
 
-/* ---------- Contenedor general (hoja de papel) ---------- */
+/* ---------- Contenedor general ---------- */
 #documento {
-    position: relative;
-    z-index: 1;
-    max-width: 920px;
+    max-width: 960px;
     margin: 0 auto;
-    background-color: var(--papel);
-    border-radius: var(--radio);
-    box-shadow: var(--sombra);
-    overflow: hidden;
+    background: transparent;
 }
 
-/* ---------- Cabecera (cielo con nubes + césped ondulado) ---------- */
+/* ---------- Cabecera ---------- */
 header,
 #cabecera {
-    position: relative;
-    padding: 30px 32px 46px;
-    background-color: var(--cielo);
-    background-image:
-        var(--img-nube),
-        var(--img-nube),
-        linear-gradient(180deg, var(--cielo) 0%, var(--cielo-claro) 100%);
-    background-size: 140px 60px, 90px 39px, auto;
-    background-position: 70% 14px, 10% 60px, 0 0;
-    background-repeat: no-repeat;
-    color: var(--madera-osc);
-    overflow: hidden;
+    padding: 0 32px;
+    background-color: var(--oscuro);
+    color: #fff;
 }
 
-/* Sol */
-header::before {
-    content: "";
-    position: absolute;
-    top: 18px;
-    right: 34px;
-    width: 46px;
-    height: 46px;
-    background: radial-gradient(circle, #fff4b0 0 45%, #ffe27a 46% 100%);
-    border-radius: 50%;
-    box-shadow: 0 0 0 10px rgba(255, 238, 150, .35), 0 0 0 22px rgba(255, 238, 150, .18);
+/* La cabecera y el menú ocupan todo el ancho de la ventana */
+header,
+#barraLogin {
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding-left: max(32px, calc(50vw - 480px + 32px));
+    padding-right: max(32px, calc(50vw - 480px + 32px));
 }
 
-/* Onda de césped en la parte baja de la cabecera */
-header::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -1px;
-    height: 24px;
-    background:
-        radial-gradient(circle at 20px -6px, transparent 20px, var(--cesped-osc) 21px) 0 0 / 40px 24px repeat-x;
-}
-
-/* Título como "etiqueta de nombre" inclinada */
 #titulo,
 #cabecera #titulo {
-    position: relative;
-    z-index: 1;
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: 14px;
-    margin: 0 0 0 6px;
-    padding: 6px 28px 6px 8px;
-    background-color: var(--amarillo);
-    border-radius: 999px;
-    box-shadow: 0 6px 0 var(--amarillo-osc);
-    transform: rotate(-2.5deg);
-    font-family: var(--fuente-titulo);
-    font-size: 1.8rem;
-    font-weight: 700;
+    gap: 16px;
+    margin: 0;
+    padding: 16px 0;
+    font-size: 1.7rem;
+    font-weight: 600;
     font-style: normal;
-    letter-spacing: .5px;
-    color: var(--madera-osc);
+    letter-spacing: -.01em;
+    color: #fff;
 }
 
 #titulo a {
     display: inline-flex;
     flex-shrink: 0;
-    margin: -16px 0 -16px -16px;
+}
+
+#titulo a:hover {
+    text-decoration: none;
 }
 
 #logo {
-    width: 76px;
-    height: 76px;
+    width: 90px;
+    height: 90px;
     margin: 0;
-    padding: 7px;
+    padding: 6px;
+    border-radius: 12px;
     object-fit: contain;
-    background-color: var(--papel);
-    border: 5px solid #fff;
-    border-radius: 50%;
-    box-shadow: 0 5px 0 var(--amarillo-osc);
-    transition: transform .4s cubic-bezier(.34, 1.56, .64, 1);
+    background-color: #fff;
 }
 
-#titulo a:hover #logo {
-    transform: rotate(-15deg) scale(1.1);
-}
-
-/* ---------- Menú principal (barra de césped con "chapas") ---------- */
+/* ---------- Menú principal ---------- */
 #barraLogin {
-    position: relative;
-    margin: 0;
-    padding: 6px 24px 16px;
-    background-color: var(--cesped-osc);
-    background-image: var(--img-cesped);
-    background-size: 120px 120px;
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: var(--oscuro-2);
     border: none;
     border-radius: 0;
+    border-bottom: 1px solid #334155;
 }
 
 #barraLogin ul {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -274,82 +168,30 @@ header::after {
 }
 
 #barraLogin a {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 7px 18px 7px 12px;
-    background-color: var(--papel);
-    color: var(--madera-osc);
-    border-radius: 999px;
-    font-family: var(--fuente-titulo);
-    font-size: 1rem;
-    font-weight: 600;
-    box-shadow: 0 4px 0 var(--hoja);
+    display: block;
+    padding: 12px 16px;
+    color: #cbd5e1;
+    font-size: .9rem;
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+    transition: color .15s, border-color .15s, background-color .15s;
 }
 
-#barraLogin a::before {
-    content: "";
-    width: 16px;
-    height: 16px;
-    background: var(--img-hojita) center / contain no-repeat;
-    transition: transform .3s;
+#barraLogin li:first-child a {
+    padding-left: 0;
 }
 
 #barraLogin a:hover {
-    background-color: var(--amarillo);
-    color: var(--madera-osc);
-    transform: translateY(-3px);
-    box-shadow: 0 7px 0 var(--hoja);
+    color: #fff;
+    text-decoration: none;
+    border-bottom-color: var(--acento);
 }
 
-#barraLogin a:hover::before {
-    transform: rotate(-25deg) scale(1.2);
-}
-
-#barraLogin a:active {
-    transform: translateY(2px);
-    box-shadow: 0 2px 0 var(--hoja);
-}
-
-/* ---------- Migas de pan (cartel de madera con clavos) ---------- */
+/* ---------- Ruta de navegación ---------- */
 #barraUbicacion {
-    position: relative;
-    display: inline-block;
     margin: 24px 32px 0;
-    padding: 8px 30px;
-    background-color: var(--madera);
-    background-image: repeating-linear-gradient(0deg,
-            transparent 0 7px,
-            rgba(122, 86, 52, .18) 7px 8px);
-    color: #f6e6cc;
-    border-radius: 10px;
-    box-shadow: inset 0 -4px 0 var(--madera-osc), 0 4px 0 rgba(122, 86, 52, .2);
-    font-family: var(--fuente-titulo);
-    font-size: .95rem;
-    font-weight: 500;
-    transform: rotate(-1deg);
-}
-
-/* Clavos del cartel */
-#barraUbicacion::before,
-#barraUbicacion::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    width: 8px;
-    height: 8px;
-    margin-top: -5px;
-    background: #e9d3ad;
-    border-radius: 50%;
-    box-shadow: inset 0 -2px 0 #a07c55;
-}
-
-#barraUbicacion::before {
-    left: 11px;
-}
-
-#barraUbicacion::after {
-    right: 11px;
+    font-size: .85rem;
+    color: var(--texto-tenue);
 }
 
 #barraUbicacion:empty {
@@ -357,39 +199,28 @@ header::after {
 }
 
 #barraUbicacion a {
-    color: #fff8e6;
+    color: var(--texto-suave);
+    font-weight: 500;
 }
 
 #barraUbicacion a:hover {
-    color: var(--amarillo);
+    color: var(--acento);
 }
 
-/* ---------- Contenido principal (cuadro de diálogo) ---------- */
+#barraUbicacion a:last-child {
+    color: var(--texto);
+    font-weight: 600;
+}
+
+/* ---------- Contenido principal ---------- */
 #main {
-    position: relative;
-    margin: 24px 32px 0;
-    padding: 32px 36px 46px;
-    background-color: var(--papel-2);
-    border-radius: 40px 40px 40px 40px / 34px 34px 34px 34px;
-    /* Borde "cosido" interior */
-    outline: 3px dashed var(--arena-osc);
-    outline-offset: -12px;
-    border: none;
-    box-shadow: 0 6px 0 var(--arena-osc);
+    margin: 14px 32px 0;
+    padding: 32px 36px;
+    background-color: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
     overflow-wrap: anywhere;
-    isolation: isolate;
-}
-
-/* Flechita ▼ de "continuar" que rebota, como en los diálogos */
-#main::after {
-    content: "";
-    position: absolute;
-    right: 30px;
-    bottom: 20px;
-    border: 10px solid transparent;
-    border-bottom: 0;
-    border-top: 13px solid var(--amarillo-osc);
-    filter: drop-shadow(0 2px 0 rgba(122, 86, 52, .2));
 }
 
 /* Los <br><br> del principio de cada página sobran visualmente */
@@ -400,12 +231,13 @@ header::after {
 
 #main h1,
 #main h2,
-#main h3 {
-    font-family: var(--fuente-titulo);
-    color: var(--hoja);
+#main h3,
+#main h4 {
+    color: var(--oscuro);
     font-weight: 600;
-    line-height: 1.25;
-    margin: 1.2em 0 .6em;
+    line-height: 1.3;
+    letter-spacing: -.01em;
+    margin: 1.8em 0 .6em;
 }
 
 #main h1:first-child,
@@ -414,152 +246,136 @@ header::after {
     margin-top: 0;
 }
 
-/* h2 como cinta/banderín */
 #main h2 {
-    position: relative;
-    display: inline-block;
-    padding: 6px 26px;
-    background-color: var(--cesped-osc);
-    color: #fff;
-    border-radius: 6px;
-    box-shadow: 0 4px 0 var(--hoja);
-}
-
-#main h2::before,
-#main h2::after {
-    content: "";
-    position: absolute;
-    top: 8px;
-    border: 14px solid var(--hoja);
-    z-index: -1;
-}
-
-#main h2::before {
-    left: -16px;
-    border-left-color: transparent;
-}
-
-#main h2::after {
-    right: -16px;
-    border-right-color: transparent;
+    font-size: 1.45rem;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--borde);
 }
 
 #main h3 {
-    padding-left: 30px;
-    background: var(--img-hojita) left center / 22px no-repeat;
+    font-size: 1.08rem;
 }
 
-/* Índices de proyectos / ejercicios: cada enlace es un "icono de app" */
-#main > a {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    min-width: 190px;
-    margin: 6px 0;
-    padding: 8px 22px 8px 8px;
-    background-color: #fff;
-    color: var(--madera-osc);
-    border-radius: 999px;
-    box-shadow: 0 5px 0 var(--arena-osc);
-    font-family: var(--fuente-titulo);
-    font-size: 1.05rem;
+#main p {
+    margin: .6em 0;
+}
+
+#main strong {
     font-weight: 600;
+    color: var(--oscuro);
 }
 
-#main > a::before {
-    content: "";
-    flex-shrink: 0;
-    width: 34px;
-    height: 34px;
-    border-radius: 12px;
-    background: var(--img-hojita) center / 20px no-repeat, var(--menta);
-    transition: transform .35s cubic-bezier(.34, 1.56, .64, 1);
+/* Índices de proyectos / ejercicios: lista de filas */
+#main > a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    padding: 12px 16px;
+    color: var(--texto);
+    font-weight: 500;
+    border: 1px solid var(--borde);
+    border-top-width: 0;
+    background-color: var(--superficie);
+    transition: background-color .15s, color .15s;
 }
 
-/* Cada icono de un color pastel distinto */
-#main > a:nth-of-type(6n+2)::before { background-color: var(--rosa); }
-#main > a:nth-of-type(6n+3)::before { background-color: var(--celeste); }
-#main > a:nth-of-type(6n+4)::before { background-color: var(--naranja); }
-#main > a:nth-of-type(6n+5)::before { background-color: var(--lila); }
-#main > a:nth-of-type(6n+6)::before { background-color: #fff1a8; }
+/* Primera y última fila con esquinas redondeadas */
+#main > a:first-of-type {
+    border-top-width: 1px;
+    border-radius: var(--radio) var(--radio) 0 0;
+}
+
+#main > a:last-of-type {
+    border-radius: 0 0 var(--radio) var(--radio);
+}
+
+#main > a:only-of-type {
+    border-radius: var(--radio);
+}
+
+#main > a::after {
+    content: "→";
+    color: var(--texto-tenue);
+    transition: transform .15s, color .15s;
+}
 
 #main > a:hover {
-    background-color: var(--amarillo);
-    transform: translateY(-3px) rotate(-1.5deg);
-    box-shadow: 0 8px 0 var(--amarillo-osc);
+    background-color: var(--superficie-2);
+    color: var(--acento);
+    text-decoration: none;
 }
 
-#main > a:hover::before {
-    transform: rotate(-12deg) scale(1.12);
+#main > a:hover::after {
+    color: var(--acento);
+    transform: translateX(3px);
 }
 
-#main > a:active {
-    transform: translateY(2px);
-    box-shadow: 0 2px 0 var(--amarillo-osc);
+#main > a + br {
+    display: none;
 }
 
-/* Bloques opcionales para enunciado y resultado */
-.enunciado {
+/* ---------- Enunciado y resultado (opcionales) ---------- */
+.enunciado,
+.resultado {
     position: relative;
-    margin: 30px 0 26px;
-    padding: 26px 24px 16px;
-    background-color: #fff;
-    border-radius: 26px;
-    color: var(--texto-suave);
-    box-shadow: 0 4px 0 var(--arena-osc);
+    margin: 20px 0;
+    padding: 34px 20px 16px;
+    border-radius: var(--radio);
 }
 
-/* Etiqueta de nombre del bocadillo */
+.enunciado::before,
+.resultado::before {
+    position: absolute;
+    top: 12px;
+    left: 20px;
+    font-size: .7rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.enunciado {
+    background-color: var(--superficie-2);
+    border: 1px solid var(--borde);
+    border-left: 3px solid var(--texto-tenue);
+    color: var(--texto-suave);
+}
+
 .enunciado::before {
     content: "Enunciado";
-    position: absolute;
-    top: -14px;
-    left: 22px;
-    padding: 1px 16px;
-    background-color: var(--naranja);
-    color: var(--madera-osc);
-    border-radius: 999px;
-    font-family: var(--fuente-titulo);
-    font-size: .9rem;
-    font-weight: 600;
-    transform: rotate(-3deg);
-    box-shadow: 0 3px 0 #e9b07a;
-}
-
-/* Piquito del bocadillo */
-.enunciado::after {
-    content: "";
-    position: absolute;
-    left: 40px;
-    bottom: -12px;
-    border: 12px solid transparent;
-    border-bottom: 0;
-    border-top-color: #fff;
+    color: var(--texto-tenue);
 }
 
 .resultado {
-    position: relative;
-    margin: 26px 0 18px;
-    padding: 26px 24px 16px;
-    background-color: var(--menta);
-    border-radius: 26px;
-    box-shadow: 0 4px 0 #9fd8b2;
+    background-color: var(--superficie);
+    border: 1px solid var(--borde);
+    border-left: 3px solid var(--acento);
 }
 
 .resultado::before {
     content: "Resultado";
-    position: absolute;
-    top: -14px;
-    left: 22px;
-    padding: 1px 16px;
-    background-color: var(--cesped-osc);
-    color: #fff;
-    border-radius: 999px;
-    font-family: var(--fuente-titulo);
-    font-size: .9rem;
-    font-weight: 600;
-    transform: rotate(-3deg);
-    box-shadow: 0 3px 0 var(--hoja);
+    color: var(--acento);
+}
+
+.resultado > :first-child,
+.enunciado > :first-child {
+    margin-top: 0;
+}
+
+/* ---------- Listas ---------- */
+#main ul,
+#main ol {
+    margin: .5em 0 1em;
+    padding-left: 1.4em;
+}
+
+#main li {
+    margin: .25em 0;
+}
+
+#main li::marker {
+    color: var(--texto-tenue);
 }
 
 /* ---------- Código ---------- */
@@ -567,115 +383,110 @@ code,
 pre,
 kbd {
     font-family: var(--fuente-mono);
-    font-size: .9em;
+    font-size: .85em;
 }
 
 code {
-    padding: 2px 8px;
-    background-color: #fff;
-    border-radius: 8px;
-    color: #c0603f;
-    font-weight: 600;
+    padding: 2px 6px;
+    background-color: #f1f5f9;
+    border: 1px solid var(--borde);
+    border-radius: 4px;
+    color: #0f172a;
 }
 
-/* Pizarra */
 pre {
-    padding: 18px 22px;
-    background-color: #3f6b4f;
-    color: #f4f8ec;
-    border: 8px solid var(--madera);
-    border-radius: var(--radio-peq);
-    box-shadow: 0 5px 0 var(--madera-osc);
+    margin: 16px 0;
+    padding: 16px 20px;
+    background-color: var(--oscuro);
+    color: #e2e8f0;
+    border-radius: var(--radio);
     overflow-x: auto;
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 pre code {
     padding: 0;
     background: none;
+    border: none;
     color: inherit;
 }
 
-/* ---------- Botones (con relieve y rebote) ---------- */
+kbd {
+    padding: 1px 6px;
+    background: var(--superficie);
+    border: 1px solid var(--borde-fuerte);
+    border-bottom-width: 2px;
+    border-radius: 4px;
+}
+
+/* ---------- Botones ---------- */
 .boton,
 button,
 input[type="submit"],
 input[type="button"],
 input[type="reset"] {
     display: inline-block;
-    padding: 10px 26px;
-    margin: 6px 6px 10px 0;
-    background-color: var(--amarillo);
-    color: var(--madera-osc);
-    border: none;
-    border-radius: 999px;
-    box-shadow: 0 5px 0 var(--amarillo-osc);
-    font-family: var(--fuente-titulo);
-    font-size: 1rem;
-    font-weight: 600;
+    padding: 8px 16px;
+    margin: 4px 6px 4px 0;
+    background-color: var(--acento);
+    color: #fff;
+    border: 1px solid var(--acento);
+    border-radius: 6px;
+    font: inherit;
+    font-size: .9rem;
+    font-weight: 500;
     cursor: pointer;
-    transition: transform .15s, box-shadow .15s, background-color .2s;
+    transition: background-color .15s, border-color .15s, box-shadow .15s;
 }
 
 .boton a,
 .boton a:visited {
-    color: var(--madera-osc);
+    color: #fff;
     text-decoration: none;
 }
 
 .boton:hover,
 button:hover,
 input[type="submit"]:hover,
-input[type="button"]:hover,
-input[type="reset"]:hover {
-    background-color: #ffe17f;
-    animation: boing .45s;
-    box-shadow: 0 7px 0 var(--amarillo-osc);
-}
-
-.boton:active,
-button:active,
-input[type="submit"]:active,
-input[type="button"]:active,
-input[type="reset"]:active {
-    transform: translateY(3px);
-    box-shadow: 0 2px 0 var(--amarillo-osc);
+input[type="button"]:hover {
+    background-color: var(--acento-osc);
+    border-color: var(--acento-osc);
 }
 
 input[type="reset"] {
-    background-color: #fff;
-    box-shadow: 0 5px 0 var(--arena-osc);
+    background-color: var(--superficie);
+    color: var(--texto);
+    border-color: var(--borde-fuerte);
+}
+
+input[type="reset"]:hover {
+    background-color: var(--superficie-2);
 }
 
 /* ---------- Formularios ---------- */
 form {
-    margin: 14px 0;
+    margin: 16px 0;
 }
 
 fieldset {
-    margin: 22px 0;
-    padding: 20px 24px;
-    background-color: #fff;
-    border: 3px dashed var(--arena-osc);
-    border-radius: 24px;
+    margin: 20px 0;
+    padding: 18px 20px;
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
 }
 
 legend {
-    padding: 2px 16px;
-    background-color: var(--cesped-osc);
-    color: #fff;
-    border-radius: 999px;
-    box-shadow: 0 3px 0 var(--hoja);
-    font-family: var(--fuente-titulo);
+    padding: 0 6px;
     font-weight: 600;
-    transform: rotate(-2deg);
+    color: var(--oscuro);
 }
 
 label {
     display: inline-block;
-    margin: 6px 10px 4px 0;
-    font-weight: 800;
-    color: var(--madera-osc);
+    margin: 6px 8px 4px 0;
+    font-size: .9rem;
+    font-weight: 500;
+    color: var(--texto);
 }
 
 .for_texto,
@@ -689,14 +500,14 @@ input[type="tel"],
 input[type="url"],
 select,
 textarea {
-    padding: 9px 16px;
-    margin: 2px 0 10px;
-    background-color: var(--papel);
-    border: 3px solid var(--arena-osc);
-    border-radius: 16px;
+    padding: 8px 12px;
+    margin: 2px 0 8px;
+    background-color: var(--superficie);
+    border: 1px solid var(--borde-fuerte);
+    border-radius: 6px;
     font: inherit;
     color: var(--texto);
-    transition: border-color .2s, box-shadow .2s, background-color .2s;
+    transition: border-color .15s, box-shadow .15s;
 }
 
 .for_texto:focus,
@@ -704,340 +515,192 @@ input:focus,
 select:focus,
 textarea:focus {
     outline: none;
-    background-color: #fff;
-    border-color: var(--cesped);
-    box-shadow: 0 0 0 4px rgba(143, 209, 106, .35);
+    border-color: var(--acento);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, .15);
 }
 
 textarea {
     width: 100%;
-    min-height: 110px;
+    min-height: 100px;
     resize: vertical;
 }
 
 input[type="checkbox"],
 input[type="radio"] {
-    accent-color: var(--cesped-osc);
-    width: 18px;
-    height: 18px;
-    vertical-align: middle;
+    accent-color: var(--acento);
 }
 
-/* ---------- Tablas (libreta) ---------- */
+/* ---------- Tablas ---------- */
 .tabla,
 #main table {
     width: 100%;
-    margin: 20px 0;
+    margin: 16px 0;
     border-collapse: separate;
     border-spacing: 0;
-    background-color: #fff;
-    border-radius: 22px;
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
     overflow: hidden;
-    box-shadow: 0 5px 0 var(--arena-osc);
-    font-size: .95rem;
+    background-color: var(--superficie);
+    font-size: .9rem;
 }
 
 .tabla th,
 #main table th {
-    padding: 12px 16px;
-    background-color: var(--cesped-osc);
-    color: #fff;
+    padding: 10px 14px;
+    background-color: var(--superficie-2);
+    color: var(--texto-suave);
+    border-bottom: 1px solid var(--borde);
     text-align: left;
-    font-family: var(--fuente-titulo);
+    font-size: .75rem;
     font-weight: 600;
-    text-shadow: 0 2px 0 var(--hoja);
+    letter-spacing: .05em;
+    text-transform: uppercase;
 }
 
 .tabla td,
 #main table td {
-    padding: 10px 16px;
-    border-top: 2px dotted var(--arena);
+    padding: 10px 14px;
+    border-top: 1px solid var(--borde);
 }
 
-.tabla tr.par td,
-#main table tr:nth-child(even) td {
-    background-color: var(--papel);
+.tabla tr:first-child td,
+#main table tr:first-child td {
+    border-top: none;
+}
+
+.tabla tr.par td {
+    background-color: var(--superficie-2);
     color: inherit;
 }
 
 .tabla tbody tr:hover td,
 #main table tr:hover td {
-    background-color: #fff6d1;
-}
-
-/* ---------- Listas con hojitas ---------- */
-#main ul,
-#main ol {
-    padding-left: 8px;
-}
-
-#main ul li {
-    list-style: none;
-    padding-left: 28px;
-    margin: 4px 0;
-    background: var(--img-hojita) left 5px / 18px no-repeat;
-}
-
-#main ol li {
-    margin-left: 22px;
-}
-
-#main ol li::marker {
-    color: var(--cesped-osc);
-    font-family: var(--fuente-titulo);
-    font-weight: 700;
+    background-color: var(--acento-claro);
 }
 
 /* ---------- Mensajes ---------- */
 .error,
 .ok,
 .exito {
-    position: relative;
-    margin: 14px 0;
-    padding: 12px 18px 12px 52px;
-    border: none;
-    border-radius: 20px;
-    font-weight: 800;
-}
-
-.error::before,
-.ok::before,
-.exito::before {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    width: 28px;
-    height: 28px;
-    margin-top: -14px;
-    border-radius: 50%;
-    color: #fff;
+    margin: 12px 0;
+    padding: 10px 14px;
+    border: 1px solid;
+    border-left-width: 3px;
+    border-radius: 6px;
     font-size: .9rem;
-    line-height: 28px;
-    text-align: center;
 }
 
 .error {
-    background-color: var(--coral-fondo);
-    color: #b44a33;
-    box-shadow: 0 4px 0 #f6c2b4;
-}
-
-.error::before {
-    content: "!";
-    background-color: var(--coral);
-    font-weight: 900;
-    animation: sacudir 2.5s infinite;
+    background-color: var(--error-fondo);
+    color: var(--error);
+    border-color: #fecaca;
+    border-left-color: var(--error);
 }
 
 .ok,
 .exito {
-    background-color: var(--menta);
-    color: var(--hoja);
-    box-shadow: 0 4px 0 #9fd8b2;
+    background-color: var(--exito-fondo);
+    color: var(--exito);
+    border-color: #bbf7d0;
+    border-left-color: var(--exito);
 }
 
-.ok::before,
-.exito::before {
-    content: "✔";
-    background-color: var(--cesped-osc);
-}
-
-/* ---------- Pie (playa con olas) ---------- */
+/* ---------- Pie ---------- */
 footer,
 #pie {
-    position: relative;
-    margin-top: 34px;
-    padding: 40px 32px 56px;
-    background-color: var(--arena);
-    background-image: var(--img-playa);
-    background-size: 180px 70px;
-    background-position: 0 100%;
-    background-repeat: repeat-x;
-    color: var(--texto-suave);
-    font-family: var(--fuente-titulo);
-    font-size: .95rem;
-    font-weight: 500;
+    margin: 32px 32px 0;
+    padding: 0;
+    color: var(--texto-tenue);
+    font-size: .8rem;
     text-align: center;
 }
 
-/* Mar con olas */
-footer::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    height: 26px;
-    background:
-        radial-gradient(circle at 20px 30px, transparent 16px, var(--agua) 17px) 0 0 / 40px 26px repeat-x;
-}
-
-/* Espuma blanca */
-footer::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    height: 10px;
-    background: var(--agua-claro);
-    opacity: .9;
-}
-
 footer hr {
-    display: none;
+    width: 100%;
+    margin: 0 0 16px;
 }
 
-/* ---------- Animaciones ---------- */
-@keyframes boing {
-    0%   { transform: scale(1); }
-    30%  { transform: scale(1.12, .9); }
-    55%  { transform: scale(.94, 1.06); }
-    75%  { transform: scale(1.03, .98); }
-    100% { transform: scale(1); }
-}
-
-@keyframes sacudir {
-    0%, 85%, 100% { transform: rotate(0); }
-    88% { transform: rotate(-15deg); }
-    92% { transform: rotate(15deg); }
-    96% { transform: rotate(-8deg); }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-    /* Hojas cayendo */
-    body::before {
-        animation: caerHojas 28s linear infinite;
-    }
-
-    @keyframes caerHojas {
-        from { transform: translate(0, 0); }
-        to   { transform: translate(-80px, 400px); }
-    }
-
-    /* Nubes moviéndose */
-    header {
-        animation: nubes 40s linear infinite;
-    }
-
-    @keyframes nubes {
-        from { background-position: 110% 14px, -10% 60px, 0 0; }
-        to   { background-position: -30% 14px, 120% 60px, 0 0; }
-    }
-
-    /* Olas */
-    footer::before {
-        animation: olas 3s ease-in-out infinite alternate;
-    }
-
-    @keyframes olas {
-        from { background-position: 0 0; }
-        to   { background-position: 20px 3px; }
-    }
-
-    /* Flechita ▼ que rebota */
-    #main::after {
-        animation: flecha 1s ease-in-out infinite;
-    }
-
-    @keyframes flecha {
-        0%, 100% { transform: translateY(0); }
-        50%      { transform: translateY(5px); }
-    }
-
-    /* Aparición del contenido */
-    #main {
-        animation: aparecer .5s cubic-bezier(.34, 1.56, .64, 1) both;
-    }
-
-    @keyframes aparecer {
-        from {
-            opacity: 0;
-            transform: translateY(16px) scale(.97);
-        }
-        to {
-            opacity: 1;
-            transform: none;
-        }
-    }
-
-    /* Los iconos de ejercicio entran uno detrás de otro */
-    #main > a {
-        animation: aparecer .45s cubic-bezier(.34, 1.56, .64, 1) both;
-    }
-
-    #main > a:nth-of-type(2) { animation-delay: .05s; }
-    #main > a:nth-of-type(3) { animation-delay: .10s; }
-    #main > a:nth-of-type(4) { animation-delay: .15s; }
-    #main > a:nth-of-type(5) { animation-delay: .20s; }
-    #main > a:nth-of-type(6) { animation-delay: .25s; }
-    #main > a:nth-of-type(7) { animation-delay: .30s; }
-    #main > a:nth-of-type(n+8) { animation-delay: .35s; }
-
-    /* Sol que late suavemente */
-    header::before {
-        animation: sol 4s ease-in-out infinite;
-    }
-
-    @keyframes sol {
-        0%, 100% { transform: scale(1); }
-        50%      { transform: scale(1.08); }
-    }
+/* ---------- Accesibilidad ---------- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+.boton:focus-visible {
+    outline: 2px solid var(--acento);
+    outline-offset: 2px;
 }
 
 /* ---------- Móvil ---------- */
 @media (max-width: 640px) {
-    body {
-        padding: 0;
-    }
-
-    #documento {
-        border-radius: 0;
-    }
-
-    header {
-        padding: 26px 18px 40px;
-    }
-
-    header::before {
-        width: 34px;
-        height: 34px;
-        right: 18px;
+    header,
+    #barraLogin {
+        padding-left: 16px;
+        padding-right: 16px;
     }
 
     #titulo {
-        font-size: 1.3rem;
-        padding-right: 20px;
-    }
-
-    #titulo a {
-        margin: -10px 0 -10px -10px;
+        font-size: 1.1rem;
+        padding: 14px 0;
     }
 
     #logo {
-        width: 56px;
-        height: 56px;
+        width: 64px;
+        height: 64px;
     }
 
-    #barraLogin {
-        padding: 6px 14px 14px;
+    #barraLogin ul {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+    }
+
+    #barraLogin a {
+        white-space: nowrap;
     }
 
     #barraUbicacion {
-        margin: 18px 14px 0;
+        margin: 18px 16px 0;
     }
 
     #main {
-        margin: 18px 12px 0;
-        padding: 26px 22px 44px;
+        margin: 12px 0 0;
+        padding: 22px 18px;
+        border-left: none;
+        border-right: none;
+        border-radius: 0;
     }
 
-    #main > a {
-        display: flex;
-        margin: 10px 0;
+    footer {
+        margin: 24px 16px 0;
+    }
+}
+
+/* ---------- Impresión ---------- */
+@media print {
+    body {
+        background: #fff;
+        padding: 0;
     }
 
-    #main > a + br {
+    #barraLogin,
+    #barraUbicacion {
         display: none;
+    }
+
+    header {
+        background: #fff;
+        color: #000;
+        border-bottom: 2px solid #000;
+    }
+
+    #titulo {
+        color: #000;
+    }
+
+    #main {
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        margin: 16px 0 0;
     }
 }
