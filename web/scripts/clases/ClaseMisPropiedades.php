@@ -48,15 +48,20 @@ class ClaseMisPropiedades implements IteratorAggregate
     }
 
     /**
-     * Método de IteratorAggregate: devuelve las propiedades con el prefijo oi_,
-     * primero las dinámicas y al final propPublica y _propPrivada
+     * Metodo de IteratorAggregate, es el que usa el foreach.
+     * Montamos un array con las claves con oi_ delante, primero las dinamicas
+     * y al final propPublica y _propPrivada, y devolvemos un iterador de ese array
+     * @return Iterator
      */
     public function getIterator(): Iterator
     {
+        $resultado = [];
         foreach ($this->_propiedades as $nombre => $valor)
-            yield "oi_$nombre" => $valor;
+            $resultado["oi_" . $nombre] = $valor;
 
-        yield "oi_propPublica" => $this->propPublica;
-        yield "oi__propPrivada" => $this->_propPrivada;
+        $resultado["oi_propPublica"] = $this->propPublica;
+        $resultado["oi__propPrivada"] = $this->_propPrivada;
+
+        return new ArrayIterator($resultado);
     }
 }

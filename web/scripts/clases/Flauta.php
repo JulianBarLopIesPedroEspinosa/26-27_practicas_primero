@@ -50,23 +50,39 @@ final class Flauta extends InstrumentoViento implements IFabricable
 
     //---------------- Métodos de IFabricable ----------------
 
+    /**
+     * Segun el material de la flauta se fabrica de una forma u otra
+     * @return string pasos para fabricarla
+     */
     public function metodoFabricacion(): string
     {
-        return match (mb_strtolower($this->_material)) {
-            "madera" => "Tornear el tubo de madera, perforar los agujeros y barnizar.",
-            "metal", "plata" => "Laminar la chapa de {$this->_material}, darle forma de tubo, soldar las llaves y pulir.",
-            "plástico", "plastico" => "Inyectar el plástico en un molde y lijar las rebabas.",
-            default => "Dar forma al tubo de {$this->_material} y perforar los agujeros."
-        };
+        $material = mb_strtolower($this->_material);
+
+        if ($material === "madera")
+            return "Tornear el tubo de madera, perforar los agujeros y barnizar.";
+        if ($material === "metal" || $material === "plata")
+            return "Hacer el tubo con la chapa de $material, soldar las llaves y pulir.";
+        if ($material === "plastico")
+            return "Meter el plastico en un molde y lijar los bordes.";
+
+        return "Dar forma al tubo de $material y perforar los agujeros.";
     }
 
+    /**
+     * El reciclado depende tambien del material
+     * @return string donde se recicla
+     */
     public function metodoReciclado(): string
     {
-        return match (mb_strtolower($this->_material)) {
-            "madera" => "Contenedor de restos de madera o punto limpio.",
-            "metal", "plata" => "Punto limpio para recuperar el metal.",
-            "plástico", "plastico" => "Contenedor amarillo.",
-            default => "Llevar al punto limpio."
-        };
+        $material = mb_strtolower($this->_material);
+
+        if ($material === "madera")
+            return "Contenedor de restos de madera o punto limpio.";
+        if ($material === "metal" || $material === "plata")
+            return "Punto limpio para recuperar el metal.";
+        if ($material === "plastico")
+            return "Contenedor amarillo.";
+
+        return "Llevar al punto limpio.";
     }
 }

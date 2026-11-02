@@ -68,8 +68,11 @@ class SerieFibonacci implements Iterator
         $siguiente = 1; // F(n+1)
 
         for ($n = 0; $n <= $ultimo; $n++) {
-            yield $n => $anterior;
-            [$anterior, $siguiente] = [$siguiente, $anterior + $siguiente];
+            yield $n => $anterior; // devuelve el valor y la funcion se "pausa" hasta el siguiente
+
+            $suma = $anterior + $siguiente;
+            $anterior = $siguiente;
+            $siguiente = $suma;
         }
     }
 
