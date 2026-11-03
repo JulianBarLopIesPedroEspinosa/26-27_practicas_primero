@@ -8,7 +8,7 @@ $barra = [
         "ENLACE" => "/index.php"
     ],
     [
-        "TEXTO" => "Relación 4",
+        "TEXTO" => "Proyecto4",
         "ENLACE" => "/aplicacion/relacion4/index.php"
     ]
 ];

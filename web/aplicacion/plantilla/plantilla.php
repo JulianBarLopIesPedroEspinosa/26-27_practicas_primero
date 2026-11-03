@@ -70,6 +70,7 @@ function inicioCuerpo(string $cabecera, array $ubicacion)
                     <li><a href="/aplicacion/Proyecto2/index.php">Proyecto2</a></li>
                     <li><a href="/aplicacion/Proyecto3/index.php">Proyecto3</a></li>
                     <li><a href="/aplicacion/Proyecto4/index.php">Proyecto4</a></li>
+                    <li><a href="/aplicacion/Proyecto5/index.php">Proyecto5</a></li>
 
                 </ul>
             </div>
