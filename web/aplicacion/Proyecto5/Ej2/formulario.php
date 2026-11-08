@@ -1,5 +1,20 @@
 <?php
 
+/**
+ * Relacion 5 - Ejercicio 2: formulario de datos personales.
+ *
+ * Funcionamiento:
+ *  - La primera vez se muestra el formulario con los valores iniciales.
+ *  - Al enviarlo (por post, al propio fichero) el controlador valida cada
+ *    campo con la libreria de validacion.
+ *  - Si hay algun error, se vuelve a mostrar el formulario con los datos
+ *    validados y corregidos y el mensaje de error de cada campo.
+ *  - Si todo es correcto, no se muestra el formulario sino un resumen.
+ */
+
+// Funciones de validacion que se usan, importadas del espacio de nombres
+// VALFILTER para poder llamarlas sin el prefijo (validaFecha en lugar de
+// \VALFILTER\validaFecha)
 use function VALFILTER\validaCadena;
 use function VALFILTER\validaEntero;
 use function VALFILTER\validaExpresion;
@@ -10,16 +25,17 @@ use function VALFILTER\validaReal;
 
 include_once(dirname(__FILE__) . "/../../../cabecera.php");
 
-// Librería de validación reutilizable (la de FILTER, sin espacio de nombres)
+// Libreria de validacion con FILTER. Son funciones, no clases, asi que el
+// autoload no la carga: hay que incluirla a mano
 include_once(RUTABASE . "/scripts/libreriasPr5/val_filter.php");
 
 
 // =====================================================================
-// CONSTANTES: opciones válidas de los radiobuttons y de los checkbox.
-// Las uso tanto en el controlador (para validar) como en la vista (para
-// dibujar el formulario y el resumen). La clave es el código que se envía.
-// Las opciones incorrectas (5 y 6) NO están aquí: solo se añaden en el
-// formulario para poder probar que la validación las rechaza.
+// CONSTANTES: opciones validas de los radiobuttons y de los checkbox.
+// Se usan en el controlador (para validar) y en la vista (para dibujar
+// el formulario y el resumen). La clave es el codigo que se envia.
+// Las opciones incorrectas (5 y 6) NO estan aqui: solo se agregan en el
+// formulario para poder probar que la validacion las rechaza.
 // =====================================================================
 const ESTADOS = [
     1 => "Estudiante",
@@ -41,21 +57,24 @@ const ESTUDIOS = [
 // =====================================================================
 // CONTROLADOR
 // =====================================================================
+
+// Barra de ubicacion: Inicio >> Proyecto5 >> Ejercicio 2
 $barra = [
     [
         "TEXTO" => "Inicio",
         "ENLACE" => "/index.php"
     ],
     [
-        "TEXTO" => "Proyecto5"
+        "TEXTO" => "Proyecto5",
+        "ENLACE" => "/aplicacion/Proyecto5/index.php"
     ],
     [
-        "TEXTO" => "Ejercicio 2",
-        "ENLACE" => "/aplicacion/Proyecto5/Ej2/index.php"
+        "TEXTO" => "Ejercicio 2"
     ]
 ];
 
-// Valores iniciales: son los que se ven la primera vez que se abre la página
+// Valores iniciales: son los que se ven la primera vez que se abre la pagina.
+// Si se envia el formulario, cada campo se sustituye por su valor validado.
 $datos = [
     "nombre" => "",
     "contrasena" => "",
@@ -64,30 +83,33 @@ $datos = [
     "carnetMes" => "",
     "carnetAnio" => "",
     "hora" => "",
-    "estado" => "",       // ningún radiobutton marcado al principio
-    "estudios" => [],     // ningún checkbox marcado al principio
-    "hermanos" => 0,
-    "sueldo" => 1100.0
+    "estado" => "",       // ningun radiobutton marcado al principio
+    "estudios" => [],     // ningun checkbox marcado al principio
+    "hermanos" => 0,      // valor por defecto que pide el enunciado
+    "sueldo" => 1100.0    // valor por defecto que pide el enunciado
 ];
 
-// Mensajes de error de cada campo. Si al final está vacío, todo es correcto.
+// Mensajes de error de cada campo (la clave es el nombre del campo).
+// Si al final esta vacio, todo es correcto.
 $errores = [];
 
-// ¿Se ha pulsado el botón de enviar? La primera vez que se abre la página, no.
+// El formulario se ha enviado si llega el boton "enviar".
+// La primera vez que se abre la pagina no llega.
 $enviado = isset($_POST["enviar"]);
 
 if ($enviado) {
 
     // ---------- NOMBRE ----------
-    // Máximo 25 caracteres, no vacío, no empieza por H. Se pasa a mayúsculas.
-    // Uso elseif para que, si falla una comprobación, no se hagan las siguientes
-    // (si no, se acumularían varios errores para el mismo campo).
+    // Maximo 25 caracteres, no vacio, no empieza por H. Se pasa a mayusculas.
+    // Se usa elseif para que, si falla una comprobacion, no se hagan las
+    // siguientes (si no, se acumularian varios errores para el mismo campo).
+    // ?? "" evita el aviso de PHP si el campo no llega en $_POST.
     $nombre = trim($_POST["nombre"] ?? "");
 
     if ($nombre === "") {
-        $errores["nombre"] = "El nombre no puede estar vacío.";
+        $errores["nombre"] = "El nombre no puede estar vacio.";
     } elseif (!validaCadena($nombre, 25, "")) {
-        $errores["nombre"] = "El nombre no puede tener más de 25 caracteres.";
+        $errores["nombre"] = "El nombre no puede tener mas de 25 caracteres.";
     } elseif (!validaExpresion($nombre, '/^[^Hh]/u', "")) {
         $errores["nombre"] = "El nombre no puede empezar por H.";
     } else {
@@ -96,43 +118,59 @@ if ($enviado) {
     $datos["nombre"] = $nombre;
 
 
- 
+    // ---------- CONTRASEÑA ----------
+    // Maximo 15 caracteres (validaCadena) y la expresion regular comprueba:
+    //   ^                  principio de la cadena
+    //   (?=.*[A-Z])        mas adelante hay al menos una mayuscula
+    //   (?=.*[a-z])        mas adelante hay al menos una minuscula
+    //   (?=.*\d)           mas adelante hay al menos una cifra
+    //   (?=.*[$_\-;<>@])   mas adelante hay al menos un caracter especial de la lista
+    //   [A-Za-zñÑ\d$_\-;<>@]{8,}
+    //                      la contraseña completa: solo esos caracteres y minimo 8.
+    //                      La ñ es una modificacion propia: la expresion
+    //                      original no la permitia
+    //   $                  final de la cadena
+    //   u                  modo UTF-8: la ñ cuenta como 1 caracter y no como 2 bytes
+    // Los (?=...) son lookahead: comprueban sin "consumir" caracteres, por eso
+    // se pueden poner varios seguidos y todos miran la contraseña entera.
     $contrasena = $_POST["contrasena"] ?? "";
-    $expContrasena = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[$_\-;<>@])[A-Za-z\d$_\-;<>@]{8,}$/';
+    $expContrasena = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[$_\-;<>@])[A-Za-zñÑ\d$_\-;<>@]{8,}$/u';
 
-    // Ojo: el mensaje va con comillas simples. Con dobles, PHP leería "$_" como una variable.
+    // El ultimo mensaje va con comillas simples: con dobles, PHP leeria "$_" como una variable
     if ($contrasena === "") {
-        $errores["contrasena"] = "La contraseña no puede estar vacía.";
+        $errores["contrasena"] = "La contraseña no puede estar vacia.";
     } elseif (!validaCadena($contrasena, 15, "")) {
-        $errores["contrasena"] = "La contraseña no puede tener más de 15 caracteres.";
+        $errores["contrasena"] = "La contraseña no puede tener mas de 15 caracteres.";
     } elseif (!validaExpresion($contrasena, $expContrasena, "")) {
-        $errores["contrasena"] = 'Mínimo 8 caracteres, con mayúscula, minúscula, cifra y un carácter especial ($_-;<>@).';
+        $errores["contrasena"] = 'Minimo 8 caracteres, con mayuscula, minuscula, cifra y un caracter especial ($_-;<>@).';
     }
     $datos["contrasena"] = $contrasena;
 
 
     // ---------- FECHA DE NACIMIENTO ----------
-    // Una sola cadena dd/mm/aaaa. validaFecha la deja saneada (1/2/2000 → 01/02/2000).
+    // Una sola cadena dd/mm/aaaa. validaFecha la deja saneada (1/2/2000 -> 01/02/2000).
     $nacimiento = trim($_POST["nacimiento"] ?? "");
 
     if (!validaFecha($nacimiento, "")) {
-        $errores["nacimiento"] = "Fecha de nacimiento no válida (dd/mm/aaaa).";
+        $errores["nacimiento"] = "Fecha de nacimiento no valida (dd/mm/aaaa).";
     }
     $datos["nacimiento"] = $nacimiento;
 
 
     // ---------- FECHA DE CARNET ----------
-    // Llegan tres campos separados: los junto en una fecha y la valido.
+    // Llegan tres campos separados: se juntan en una fecha y se valida.
     $carnet = trim($_POST["carnetDia"] ?? "") . "/" .
               trim($_POST["carnetMes"] ?? "") . "/" .
               trim($_POST["carnetAnio"] ?? "");
 
     if (!validaFecha($carnet, "")) {
-        $errores["carnet"] = "Fecha de carnet no válida.";
+        $errores["carnet"] = "Fecha de carnet no valida.";
     } elseif (!isset($errores["nacimiento"])) {
-        // Solo si las dos fechas son válidas compruebo la mayoría de edad:
-        // a la fecha del carnet le resto 18 años (sub). Si el resultado es
-        // anterior al nacimiento, cuando se sacó el carnet no tenía 18 años.
+
+        // Solo si las dos fechas son validas se comprueba la mayoria de edad:
+        // a la fecha del carnet se le restan 18 años (sub). Si el resultado es
+        // anterior al nacimiento, cuando se saco el carnet no tenia 18 años.
+        // El ! del formato pone la hora a 00:00:00 (si no, coge la hora actual).
         $fechaNacimiento = DateTime::createFromFormat("!d/m/Y", $nacimiento);
         $fechaLimite = DateTime::createFromFormat("!d/m/Y", $carnet);
         $fechaLimite->sub(new DateInterval("P18Y"));
@@ -141,11 +179,12 @@ if ($enviado) {
         // es anterior a $fechaNacimiento (la diferencia es "negativa").
         $intervalo = $fechaNacimiento->diff($fechaLimite);
         if ($intervalo->invert == 1) {
-            $errores["carnet"] = "Tenía que ser mayor de edad al sacarse el carnet.";
+            $errores["carnet"] = "Tenia que ser mayor de edad al sacarse el carnet.";
         }
     }
 
-    // Para volver a mostrar el formulario separo la fecha (ya saneada) en sus tres partes
+    // Para volver a mostrar el formulario, la fecha (ya saneada) se separa
+    // otra vez en sus tres partes. Si no era valida, queda vacia.
     if ($carnet === "") {
         $datos["carnetDia"] = "";
         $datos["carnetMes"] = "";
@@ -159,24 +198,26 @@ if ($enviado) {
 
 
     // ---------- HORA DE LEVANTARSE ----------
+    // Cadena hh:mm:ss. validaHora la deja saneada (7:5:0 -> 07:05:00).
     $hora = trim($_POST["hora"] ?? "");
 
     if (!validaHora($hora, "")) {
-        $errores["hora"] = "Hora no válida (hh:mm:ss).";
+        $errores["hora"] = "Hora no valida (hh:mm:ss).";
     }
     $datos["hora"] = $hora;
 
 
     // ---------- ESTADO (radiobuttons) ----------
     // Si no se marca ninguno, el campo NO llega en $_POST.
-    // Lo que llega es el código: tiene que ser una de las claves de ESTADOS.
+    // Lo que llega es el codigo: tiene que ser una de las claves de ESTADOS
+    // (validaRango con tipo 2 busca en las claves).
     $estado = $_POST["estado"] ?? "";
 
     if ($estado === "") {
         $errores["estado"] = "Debe seleccionar un estado.";
     } elseif (!validaRango($estado, ESTADOS, 2)) {
-        $errores["estado"] = "El estado seleccionado no es válido.";
-        $estado = "";     // corrijo: lo dejo sin marcar
+        $errores["estado"] = "El estado seleccionado no es valido.";
+        $estado = "";     // se corrige: queda sin marcar
     }
     $datos["estado"] = $estado;
 
@@ -184,42 +225,43 @@ if ($enviado) {
     // ---------- ESTUDIOS (checkbox) ----------
     // Llegan como array (name="estudios[]"). Si no se marca ninguno, no llega.
     $marcados = $_POST["estudios"] ?? [];
-    $estudios = [];      // aquí guardo solo los códigos válidos
+    $estudios = [];      // aqui se guardan solo los codigos validos
 
     if (!is_array($marcados) || count($marcados) == 0) {
-        $errores["estudios"] = "Debe seleccionar al menos una opción.";
+        $errores["estudios"] = "Debe seleccionar al menos una opcion.";
     } else {
+        // Se valida cada codigo marcado. Los incorrectos se descartan.
         foreach ($marcados as $codigo) {
             if (validaRango($codigo, ESTUDIOS, 2)) {
                 $estudios[] = (int) $codigo;
             } else {
-                $errores["estudios"] = "Hay alguna opción de estudios no válida.";
+                $errores["estudios"] = "Hay alguna opcion de estudios no valida.";
             }
         }
 
-        // Si ha marcado "Sin estudios" (0), desmarco el resto
+        // Si ha marcado "Sin estudios" (0), se desmarca el resto
         if (in_array(0, $estudios)) {
             $estudios = [0];
         }
 
         // Si todas las marcadas eran incorrectas, no queda ninguna
         if (count($estudios) == 0 && !isset($errores["estudios"])) {
-            $errores["estudios"] = "Debe seleccionar al menos una opción.";
+            $errores["estudios"] = "Debe seleccionar al menos una opcion.";
         }
     }
     $datos["estudios"] = $estudios;
 
 
     // ---------- HERMANOS ----------
-    // Entero entre 0 y 20. Si se deja vacío, se queda el valor por defecto (0).
-    // Antes de convertirlo con (int) compruebo que es un entero, porque
+    // Entero entre 0 y 20. Si se deja vacio, se queda el valor por defecto (0).
+    // Antes de convertirlo con (int) se comprueba que es un entero, porque
     // (int) "abc" da 0 sin avisar y (int) "2.5" da 2.
     $textoHermanos = trim($_POST["hermanos"] ?? "");
     $hermanos = 0;
 
     if ($textoHermanos !== "") {
         if (!validaExpresion($textoHermanos, '/^-?\d+$/', "")) {
-            $errores["hermanos"] = "Hermanos debe ser un número entero.";
+            $errores["hermanos"] = "Hermanos debe ser un numero entero.";
         } else {
             $hermanos = (int) $textoHermanos;
             if (!validaEntero($hermanos, 0, 20, 0)) {
@@ -231,14 +273,14 @@ if ($enviado) {
 
 
     // ---------- SUELDO ----------
-    // Real entre 1000 y 150000. Si se deja vacío, se queda el valor por defecto (1100).
-    // Admito la coma decimal española cambiándola por un punto.
+    // Real entre 1000 y 150000. Si se deja vacio, se queda el valor por defecto (1100).
+    // Se admite la coma decimal cambiandola por un punto antes de comprobarlo.
     $textoSueldo = str_replace(",", ".", trim($_POST["sueldo"] ?? ""));
     $sueldo = 1100.0;
 
     if ($textoSueldo !== "") {
         if (!is_numeric($textoSueldo)) {
-            $errores["sueldo"] = "El sueldo debe ser un número.";
+            $errores["sueldo"] = "El sueldo debe ser un numero.";
         } else {
             $sueldo = (float) $textoSueldo;
             if (!validaReal($sueldo, 1000, 150000, 1100)) {
@@ -249,16 +291,16 @@ if ($enviado) {
     $datos["sueldo"] = $sueldo;
 }
 
-// Se muestra el formulario la primera vez, o si hay algún error.
+// Se muestra el formulario la primera vez, o si hay algun error.
 // Si se ha enviado y no hay errores, se muestra el resumen.
 $mostrarFormulario = !$enviado || count($errores) > 0;
 
 
 //dibuja la plantilla de la vista
-inicioCabecera("Relación 5 - Ejercicio 2");
+inicioCabecera("Relacion 5 - Ejercicio 2");
 cabecera();
 finCabecera();
-inicioCuerpo("Relación 5 - Ejercicio 2", $barra);
+inicioCuerpo("Relacion 5 - Ejercicio 2", $barra);
 cuerpo($datos, $errores, $mostrarFormulario);  //llamo a la vista
 finCuerpo();
 // **********************************************************
@@ -268,38 +310,22 @@ finCuerpo();
 // VISTA
 // =====================================================================
 
+/**
+ * Contenido extra del head. Esta pagina no necesita nada aparte
+ * de base.css, pero la funcion la pide la plantilla.
+ */
 function cabecera()
 {
-?>
-    <!-- esto va en el head -->
-    <style>
-        .campo {
-            margin-bottom: 14px;
-        }
-
-        .campo > label {
-            display: block;
-            margin-bottom: 2px;
-        }
-
-        .campo .error {
-            margin: 4px 0 0;
-            padding: 6px 12px;
-        }
-
-        .opciones label {
-            font-weight: 400;
-            margin-right: 16px;
-        }
-
-        .carnet input {
-            width: 80px;
-        }
-    </style>
-<?php
 }
 
-//vista
+/**
+ * Cuerpo de la pagina: muestra el formulario o el resumen.
+ *
+ * @param array $datos Valores de los campos.
+ * @param array $errores Mensajes de error de cada campo.
+ * @param bool $mostrarFormulario true si hay que mostrar el formulario,
+ *                                false si hay que mostrar el resumen.
+ */
 function cuerpo(array $datos, array $errores, bool $mostrarFormulario)
 {
 ?>
@@ -319,6 +345,11 @@ function cuerpo(array $datos, array $errores, bool $mostrarFormulario)
 
 /**
  * Muestra el mensaje de error de un campo, si lo tiene.
+ * Se escapa con htmlspecialchars porque algun mensaje lleva < y >
+ * (el de la contraseña) y se interpretarian como HTML.
+ *
+ * @param array $errores Mensajes de error de cada campo.
+ * @param string $campo Nombre del campo.
  */
 function mostrarError(array $errores, string $campo): void
 {
@@ -328,21 +359,27 @@ function mostrarError(array $errores, string $campo): void
 }
 
 /**
- * Dibuja el formulario.
- * $datos: valores que se muestran en cada campo.
- * $errores: mensaje de error de cada campo (si lo tiene).
- * Todos los valores se escapan con htmlspecialchars para que lo que escriba
- * el usuario no se interprete como HTML.
+ * Dibuja el formulario. Se envia por post al propio fichero.
+ * Los valores de los campos se escapan con htmlspecialchars porque
+ * vienen del usuario: asi no se interpretan como HTML.
+ *
+ * @param array $datos Valores que se muestran en cada campo.
+ * @param array $errores Mensaje de error de cada campo (si lo tiene).
  */
 function formulario(array $datos, array $errores): void
 {
-    // Opciones que se muestran: las válidas más una incorrecta para probar
+    // Opciones que se muestran: las validas mas una incorrecta para probar
     $opcionesEstado = ESTADOS + [5 => "Incorrecta"];
     $opcionesEstudios = ESTUDIOS + [6 => "Incorrecta"];
 ?>
-    <?php if (count($errores) > 0) { ?>
+    <?php
+    // Aviso general si hay algun error
+    if (count($errores) > 0) {
+    ?>
         <div class="error">Hay errores en el formulario. Revisa los campos marcados.</div>
-    <?php } ?>
+    <?php
+    }
+    ?>
 
     <form method="post" action="">
 
@@ -370,8 +407,9 @@ function formulario(array $datos, array $errores): void
                 <?php mostrarError($errores, "nacimiento"); ?>
             </div>
 
+            <!-- Fecha de carnet: tres campos independientes (dia, mes y año) -->
             <div class="campo carnet">
-                <label for="carnetDia">Fecha de carnet (día / mes / año)</label>
+                <label for="carnetDia">Fecha de carnet (dia / mes / año)</label>
                 <input type="text" id="carnetDia" name="carnetDia" placeholder="dd"
                     value="<?= htmlspecialchars($datos["carnetDia"]) ?>"> /
                 <input type="text" name="carnetMes" placeholder="mm"
@@ -390,12 +428,12 @@ function formulario(array $datos, array $errores): void
         </fieldset>
 
         <fieldset>
-            <legend>Situación</legend>
+            <legend>Situacion</legend>
 
             <div class="campo opciones">
                 <label>Estado</label>
                 <?php
-                // Un radiobutton por opción. Sale marcado el que coincide con $datos["estado"]
+                // Un radiobutton por opcion. Sale marcado el que coincide con $datos["estado"]
                 foreach ($opcionesEstado as $codigo => $texto) {
                     $marcado = ($datos["estado"] !== "" && $datos["estado"] == $codigo) ? "checked" : "";
                     echo "<label><input type='radio' name='estado' value='$codigo' $marcado> $codigo - $texto</label>";
@@ -407,7 +445,8 @@ function formulario(array $datos, array $errores): void
             <div class="campo opciones">
                 <label>Estudios</label>
                 <?php
-                // Un checkbox por opción. name="estudios[]" hace que lleguen todos en un array
+                // Un checkbox por opcion. name="estudios[]" hace que lleguen todos en un array.
+                // Salen marcados los codigos que estan en $datos["estudios"]
                 foreach ($opcionesEstudios as $codigo => $texto) {
                     $marcado = in_array($codigo, $datos["estudios"]) ? "checked" : "";
                     echo "<label><input type='checkbox' name='estudios[]' value='$codigo' $marcado> $codigo - $texto</label>";
@@ -417,7 +456,8 @@ function formulario(array $datos, array $errores): void
             </div>
 
             <div class="campo">
-                <label for="hermanos">Número de hermanos (0 a 20)</label>
+                <label for="hermanos">Numero de hermanos (0 a 20)</label>
+                <!-- (string) porque htmlspecialchars solo acepta cadenas -->
                 <input type="text" id="hermanos" name="hermanos" size="5"
                     value="<?= htmlspecialchars((string) $datos["hermanos"]) ?>">
                 <?php mostrarError($errores, "hermanos"); ?>
@@ -438,16 +478,20 @@ function formulario(array $datos, array $errores): void
 
 /**
  * Muestra el resumen con los datos introducidos (cuando todo es correcto).
- * El estado y los estudios se muestran con su texto, no con el código.
+ * El estado y los estudios se muestran con su texto, no con el codigo.
+ * La contraseña no se muestra: se sustituye por asteriscos.
+ *
+ * @param array $datos Valores validados de todos los campos.
  */
 function resumen(array $datos): void
 {
-    // Paso los códigos de estudios a sus textos
+    // Se pasan los codigos de estudios a sus textos
     $textosEstudios = [];
     foreach ($datos["estudios"] as $codigo) {
         $textosEstudios[] = ESTUDIOS[$codigo];
     }
 
+    // Se vuelve a juntar la fecha de carnet en una sola cadena
     $carnet = $datos["carnetDia"] . "/" . $datos["carnetMes"] . "/" . $datos["carnetAnio"];
 ?>
     <div class="ok">Todos los datos son correctos.</div>
@@ -463,6 +507,7 @@ function resumen(array $datos): void
         </tr>
         <tr>
             <td>Contraseña</td>
+            <!-- un asterisco por cada caracter de la contraseña -->
             <td><?= str_repeat("*", mb_strlen($datos["contrasena"])) ?></td>
         </tr>
         <tr>
@@ -491,6 +536,7 @@ function resumen(array $datos): void
         </tr>
         <tr>
             <td>Sueldo</td>
+            <!-- formato español: 2 decimales, coma decimal y punto de miles -->
             <td><?= number_format($datos["sueldo"], 2, ",", ".") ?> €</td>
         </tr>
     </table>
