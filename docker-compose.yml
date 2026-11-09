@@ -1,6 +1,6 @@
 services:
   php:
-    image: vicentett1/php-xdebug:2.0
+    image: vicentett1/php-xdebug:1.0
     volumes:
       - type: bind
         source: ./web
@@ -8,4 +8,4 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     ports:
-      - 8086:80
+      - 8085:80

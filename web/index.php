@@ -12,10 +12,10 @@ $barra = [
 
 
 //dibuja la plantilla de la vista
-inicioCabecera("Tienda");
+inicioCabecera("APLICACION PRIMER TRIMESTRE");
 cabecera();
 finCabecera();
-inicioCuerpo("TIENDA", $barra);
+inicioCuerpo("2DAW APLICACION", $barra);
 cuerpo();  //llamo a la vista
 finCuerpo();
 // **********************************************************
@@ -40,6 +40,8 @@ function cuerpo()
         <a href="./aplicacion/Proyecto2/index.php">Proyecto2 </a> <br>
         <a href="./aplicacion/Proyecto3/index.php">Proyecto3 </a> <br>
         <a href="./aplicacion/Proyecto4/index.php">Proyecto4 </a> <br>
+        <a href="./aplicacion/Proyecto5/index.php">Proyecto5 </a> <br>
+
         <a href="./aplicacion/pruebas/index.php">Pruebas</a>
     </main>
 <?php
