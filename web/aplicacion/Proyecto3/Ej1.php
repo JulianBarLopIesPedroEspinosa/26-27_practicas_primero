@@ -22,7 +22,6 @@ $barra = [
 
 $miArray = [];
 $miCadena = "";
-$miNumero = 0;
 $contador = 0;
 
 //Bucle que llamara a la funcion 10 veces y me ira rellenando el array con "pos0, pos1 ..., y en cada posicion sera el valor 0, 1 ...
@@ -36,7 +35,7 @@ inicioCabecera("Ej1");
 cabecera();
 finCabecera();
 inicioCuerpo("Ej1", $barra);
-cuerpo($miArray);  //llamo a la vista
+cuerpo($miArray, $contador);  //llamo a la vista
 finCuerpo();
 // **********************************************************
 
@@ -51,7 +50,7 @@ function cabecera()
 }
 
 //vista
-function cuerpo(array $miArray)
+function cuerpo(array $miArray, int $contador)
 {
 ?>
     <main id="main">
@@ -67,7 +66,7 @@ function cuerpo(array $miArray)
         llamada, etc). Se devolverá true si todo ha ido bien y false si se ha detectado algún error. (se debe
         dar error si se indica como posición“2daw”o “primera”)<br><br><br>
         
-        Mostrar lo que devuelve las 10 llamadas a la funcion:<br>";
+        Mostrar lo que devuelve las " . $contador . " llamadas a la funcion:<br>";
 
         foreach ($miArray as $i => $elem) {
             echo $i . " => " . $elem . "<br>";

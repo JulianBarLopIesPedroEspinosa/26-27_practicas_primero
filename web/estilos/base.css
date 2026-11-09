@@ -1,109 +1,706 @@
-@charset "UTF8";
+@charset "UTF-8";
+
+/* =========================================================
+   base.css — Estilo profesional para todas las prácticas
+   Mantiene los mismos ids y clases que usa plantilla.php
+   ========================================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+
+/* ---------- Variables ---------- */
+:root {
+    --fondo:        #f3f5f8;
+    --superficie:   #ffffff;
+    --superficie-2: #f8fafc;
+    --borde:        #e2e8f0;
+    --borde-fuerte: #cbd5e1;
+
+    --texto:        #1e293b;
+    --texto-suave:  #64748b;
+    --texto-tenue:  #94a3b8;
+
+    --oscuro:       #0f172a;   /* cabecera */
+    --oscuro-2:     #1e293b;   /* menú */
+
+    --acento:       #2563eb;   /* azul */
+    --acento-osc:   #1d4ed8;
+    --acento-claro: #eff6ff;
+
+    --exito:        #15803d;
+    --exito-fondo:  #f0fdf4;
+    --error:        #b91c1c;
+    --error-fondo:  #fef2f2;
+
+    --radio:        8px;
+    --sombra:       0 1px 2px rgba(15, 23, 42, .06), 0 1px 3px rgba(15, 23, 42, .08);
+    --sombra-media: 0 4px 12px rgba(15, 23, 42, .08);
+
+    --fuente:       "Inter", "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+    --fuente-mono:  "JetBrains Mono", "Cascadia Code", Consolas, "Courier New", monospace;
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
 
 body {
-    background-color: rgb(182, 255, 193);
-    font-size: 16px;
-}
-#documento{
-    margin: 0 auto;
-    background-color: #bcbcffb6;
-    width: 700px;
-}
-#cabecera{
-    background-color: #80fdffdc;
-    padding: 5px;
-}
-#logo{
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin: 15px;
+    margin: 0;
+    padding: 0 0 48px;
+    min-height: 100vh;
+    font-family: var(--fuente);
+    font-size: .95rem;
+    line-height: 1.65;
+    color: var(--texto);
+    background-color: var(--fondo);
+    overflow-x: hidden;
 }
 
-#cabecera #titulo{
-    font-size: 1.3em;
-    font-style: italic;
-}
-#barraLogin{
-    
-    background-color: #80fdffdc;
-    border: 2px, solid,teal ;
-    border-radius: 7px;
-    padding: 3px;
-    margin: 15px;
-    color: blue;
-}
-#barraLogin li {
-  display: inline-block;
-  margin-right: 20px;
-}
-
-#main{
-    margin: 7px;
-    border: 3px, solid, black;
-    border-radius: 5px;
-    background-color: aliceblue;
-    padding: 7px 20px 20px;
-}
-.boton{
-    background-color: blue;
-    color:white;
-    border:thin black solid;
-}
-
-.boton a{
+a {
+    color: var(--acento);
     text-decoration: none;
-    color:white;
 }
 
-.boton a:visited{
-    text-decoration: none;
-    color:white;
+a:hover {
+    color: var(--acento-osc);
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }
 
-.boton a:hover{
-    background-color:cyan;
-    color: black;
+img {
+    max-width: 100%;
 }
 
-.boton:hover{
-    background-color:cyan;
-    color: black;
-}
-
-.tabla{
-    width: 100%;
-    border-collapse: collapse;
+hr {
     border: none;
-    background-color: white;
+    border-top: 1px solid var(--borde);
 }
 
-.tabla th{
-    background-color: teal;
-    color: blue;
-}
-.tabla tr.par{
-    background-color: black;
-    color: white;
-    
-}
-#pie{
-    background-color: #81e714;
-    color: blue;
-    font-size: 1.5 em;
-    padding: 5px;
+::selection {
+    background: #bfdbfe;
 }
 
-.for_texto{
-    border:blue thin solid;
-    background-color: white;
-    padding: 2px;
-    margin:2px;
+/* ---------- Contenedor general ---------- */
+#documento {
+    max-width: 960px;
+    margin: 0 auto;
+    background: transparent;
+}
+
+/* ---------- Cabecera ---------- */
+header,
+#cabecera {
+    padding: 0 32px;
+    background-color: var(--oscuro);
+    color: #fff;
+}
+
+/* La cabecera y el menú ocupan todo el ancho de la ventana */
+header,
+#barraLogin {
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding-left: max(32px, calc(50vw - 480px + 32px));
+    padding-right: max(32px, calc(50vw - 480px + 32px));
+}
+
+#titulo,
+#cabecera #titulo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 0;
+    padding: 16px 0;
+    font-size: 1.7rem;
+    font-weight: 600;
+    font-style: normal;
+    letter-spacing: -.01em;
+    color: #fff;
+}
+
+#titulo a {
+    display: inline-flex;
+    flex-shrink: 0;
+}
+
+#titulo a:hover {
+    text-decoration: none;
+}
+
+#logo {
+    width: 90px;
+    height: 90px;
+    margin: 0;
+    padding: 6px;
+    border-radius: 12px;
+    object-fit: contain;
+    background-color: #fff;
+}
+
+/* ---------- Menú principal ---------- */
+#barraLogin {
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: var(--oscuro-2);
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #334155;
+}
+
+#barraLogin ul {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#barraLogin li {
+    display: block;
+    margin: 0;
+}
+
+#barraLogin a {
+    display: block;
+    padding: 12px 16px;
+    color: #cbd5e1;
+    font-size: .9rem;
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+    transition: color .15s, border-color .15s, background-color .15s;
+}
+
+#barraLogin li:first-child a {
+    padding-left: 0;
+}
+
+#barraLogin a:hover {
+    color: #fff;
+    text-decoration: none;
+    border-bottom-color: var(--acento);
+}
+
+/* ---------- Ruta de navegación ---------- */
+#barraUbicacion {
+    margin: 24px 32px 0;
+    font-size: .85rem;
+    color: var(--texto-tenue);
+}
+
+#barraUbicacion:empty {
+    display: none;
+}
+
+#barraUbicacion a {
+    color: var(--texto-suave);
+    font-weight: 500;
+}
+
+#barraUbicacion a:hover {
+    color: var(--acento);
+}
+
+#barraUbicacion a:last-child {
+    color: var(--texto);
+    font-weight: 600;
+}
+
+/* ---------- Contenido principal ---------- */
+#main {
+    margin: 14px 32px 0;
+    padding: 32px 36px;
+    background-color: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+    overflow-wrap: anywhere;
+}
+
+/* Los <br><br> del principio de cada página sobran visualmente */
+#main > br:first-child,
+#main > br:first-child + br {
+    display: none;
+}
+
+#main h1,
+#main h2,
+#main h3,
+#main h4 {
+    color: var(--oscuro);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -.01em;
+    margin: 1.8em 0 .6em;
+}
+
+#main h1:first-child,
+#main h2:first-child,
+#main h3:first-child {
+    margin-top: 0;
+}
+
+#main h2 {
+    font-size: 1.45rem;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--borde);
+}
+
+#main h3 {
+    font-size: 1.08rem;
+}
+
+#main p {
+    margin: .6em 0;
+}
+
+#main strong {
+    font-weight: 600;
+    color: var(--oscuro);
+}
+
+/* Índices de proyectos / ejercicios: lista de filas */
+#main > a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    padding: 12px 16px;
+    color: var(--texto);
+    font-weight: 500;
+    border: 1px solid var(--borde);
+    border-top-width: 0;
+    background-color: var(--superficie);
+    transition: background-color .15s, color .15s;
+}
+
+/* Primera y última fila con esquinas redondeadas */
+#main > a:first-of-type {
+    border-top-width: 1px;
+    border-radius: var(--radio) var(--radio) 0 0;
+}
+
+#main > a:last-of-type {
+    border-radius: 0 0 var(--radio) var(--radio);
+}
+
+#main > a:only-of-type {
+    border-radius: var(--radio);
+}
+
+#main > a::after {
+    content: "→";
+    color: var(--texto-tenue);
+    transition: transform .15s, color .15s;
+}
+
+#main > a:hover {
+    background-color: var(--superficie-2);
+    color: var(--acento);
+    text-decoration: none;
+}
+
+#main > a:hover::after {
+    color: var(--acento);
+    transform: translateX(3px);
+}
+
+#main > a + br {
+    display: none;
+}
+
+/* ---------- Enunciado y resultado (opcionales) ---------- */
+.enunciado,
+.resultado {
+    position: relative;
+    margin: 20px 0;
+    padding: 34px 20px 16px;
+    border-radius: var(--radio);
+}
+
+.enunciado::before,
+.resultado::before {
+    position: absolute;
+    top: 12px;
+    left: 20px;
+    font-size: .7rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.enunciado {
+    background-color: var(--superficie-2);
+    border: 1px solid var(--borde);
+    border-left: 3px solid var(--texto-tenue);
+    color: var(--texto-suave);
+}
+
+.enunciado::before {
+    content: "Enunciado";
+    color: var(--texto-tenue);
+}
+
+.resultado {
+    background-color: var(--superficie);
+    border: 1px solid var(--borde);
+    border-left: 3px solid var(--acento);
+}
+
+.resultado::before {
+    content: "Resultado";
+    color: var(--acento);
+}
+
+.resultado > :first-child,
+.enunciado > :first-child {
+    margin-top: 0;
+}
+
+/* ---------- Listas ---------- */
+#main ul,
+#main ol {
+    margin: .5em 0 1em;
+    padding-left: 1.4em;
+}
+
+#main li {
+    margin: .25em 0;
+}
+
+#main li::marker {
+    color: var(--texto-tenue);
+}
+
+/* ---------- Código ---------- */
+code,
+pre,
+kbd {
+    font-family: var(--fuente-mono);
+    font-size: .85em;
+}
+
+code {
+    padding: 2px 6px;
+    background-color: #f1f5f9;
+    border: 1px solid var(--borde);
+    border-radius: 4px;
+    color: #0f172a;
+}
+
+pre {
+    margin: 16px 0;
+    padding: 16px 20px;
+    background-color: var(--oscuro);
+    color: #e2e8f0;
+    border-radius: var(--radio);
+    overflow-x: auto;
+    line-height: 1.6;
+}
+
+pre code {
+    padding: 0;
+    background: none;
+    border: none;
+    color: inherit;
+}
+
+kbd {
+    padding: 1px 6px;
+    background: var(--superficie);
+    border: 1px solid var(--borde-fuerte);
+    border-bottom-width: 2px;
     border-radius: 4px;
 }
-.error{
-    background-color: white;
-    color:red;
-    border:thin solid red;
-    padding:5px;
+
+/* ---------- Botones ---------- */
+.boton,
+button,
+input[type="submit"],
+input[type="button"],
+input[type="reset"] {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 4px 6px 4px 0;
+    background-color: var(--acento);
+    color: #fff;
+    border: 1px solid var(--acento);
+    border-radius: 6px;
+    font: inherit;
+    font-size: .9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color .15s, border-color .15s, box-shadow .15s;
+}
+
+.boton a,
+.boton a:visited {
+    color: #fff;
+    text-decoration: none;
+}
+
+.boton:hover,
+button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover {
+    background-color: var(--acento-osc);
+    border-color: var(--acento-osc);
+}
+
+input[type="reset"] {
+    background-color: var(--superficie);
+    color: var(--texto);
+    border-color: var(--borde-fuerte);
+}
+
+input[type="reset"]:hover {
+    background-color: var(--superficie-2);
+}
+
+/* ---------- Formularios ---------- */
+form {
+    margin: 16px 0;
+}
+
+fieldset {
+    margin: 20px 0;
+    padding: 18px 20px;
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+}
+
+legend {
+    padding: 0 6px;
+    font-weight: 600;
+    color: var(--oscuro);
+}
+
+label {
+    display: inline-block;
+    margin: 6px 8px 4px 0;
+    font-size: .9rem;
+    font-weight: 500;
+    color: var(--texto);
+}
+
+.for_texto,
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+select,
+textarea {
+    padding: 8px 12px;
+    margin: 2px 0 8px;
+    background-color: var(--superficie);
+    border: 1px solid var(--borde-fuerte);
+    border-radius: 6px;
+    font: inherit;
+    color: var(--texto);
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.for_texto:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--acento);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, .15);
+}
+
+textarea {
+    width: 100%;
+    min-height: 100px;
+    resize: vertical;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    accent-color: var(--acento);
+}
+
+/* ---------- Tablas ---------- */
+.tabla,
+#main table {
+    width: 100%;
+    margin: 16px 0;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    overflow: hidden;
+    background-color: var(--superficie);
+    font-size: .9rem;
+}
+
+.tabla th,
+#main table th {
+    padding: 10px 14px;
+    background-color: var(--superficie-2);
+    color: var(--texto-suave);
+    border-bottom: 1px solid var(--borde);
+    text-align: left;
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+}
+
+.tabla td,
+#main table td {
+    padding: 10px 14px;
+    border-top: 1px solid var(--borde);
+}
+
+.tabla tr:first-child td,
+#main table tr:first-child td {
+    border-top: none;
+}
+
+.tabla tr.par td {
+    background-color: var(--superficie-2);
+    color: inherit;
+}
+
+.tabla tbody tr:hover td,
+#main table tr:hover td {
+    background-color: var(--acento-claro);
+}
+
+/* ---------- Mensajes ---------- */
+.error,
+.ok,
+.exito {
+    margin: 12px 0;
+    padding: 10px 14px;
+    border: 1px solid;
+    border-left-width: 3px;
+    border-radius: 6px;
+    font-size: .9rem;
+}
+
+.error {
+    background-color: var(--error-fondo);
+    color: var(--error);
+    border-color: #fecaca;
+    border-left-color: var(--error);
+}
+
+.ok,
+.exito {
+    background-color: var(--exito-fondo);
+    color: var(--exito);
+    border-color: #bbf7d0;
+    border-left-color: var(--exito);
+}
+
+/* ---------- Pie ---------- */
+footer,
+#pie {
+    margin: 32px 32px 0;
+    padding: 0;
+    color: var(--texto-tenue);
+    font-size: .8rem;
+    text-align: center;
+}
+
+footer hr {
+    width: 100%;
+    margin: 0 0 16px;
+}
+
+/* ---------- Accesibilidad ---------- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+.boton:focus-visible {
+    outline: 2px solid var(--acento);
+    outline-offset: 2px;
+}
+
+/* ---------- Móvil ---------- */
+@media (max-width: 640px) {
+    header,
+    #barraLogin {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    #titulo {
+        font-size: 1.1rem;
+        padding: 14px 0;
+    }
+
+    #logo {
+        width: 64px;
+        height: 64px;
+    }
+
+    #barraLogin ul {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+    }
+
+    #barraLogin a {
+        white-space: nowrap;
+    }
+
+    #barraUbicacion {
+        margin: 18px 16px 0;
+    }
+
+    #main {
+        margin: 12px 0 0;
+        padding: 22px 18px;
+        border-left: none;
+        border-right: none;
+        border-radius: 0;
+    }
+
+    footer {
+        margin: 24px 16px 0;
+    }
+}
+
+/* ---------- Impresión ---------- */
+@media print {
+    body {
+        background: #fff;
+        padding: 0;
+    }
+
+    #barraLogin,
+    #barraUbicacion {
+        display: none;
+    }
+
+    header {
+        background: #fff;
+        color: #000;
+        border-bottom: 2px solid #000;
+    }
+
+    #titulo {
+        color: #000;
+    }
+
+    #main {
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        margin: 16px 0 0;
+    }
 }

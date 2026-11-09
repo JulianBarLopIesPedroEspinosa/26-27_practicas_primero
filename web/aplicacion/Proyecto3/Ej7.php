@@ -20,13 +20,14 @@ $barra = [
     ]
 ];
 
+$vector=array("uno","grande","caminos","a");
 
 //dibuja la plantilla de la vista
 inicioCabecera("Ej7");
 cabecera();
 finCabecera();
 inicioCuerpo("Ej7", $barra);
-cuerpo();  //llamo a la vista
+cuerpo($vector);  //llamo a la vista
 finCuerpo();
 // **********************************************************
 
@@ -41,7 +42,7 @@ function cabecera()
 }
 
 //vista
-function cuerpo()
+function cuerpo(array &$vector)
 {
 ?>
     <main id="main">
@@ -49,11 +50,16 @@ function cuerpo()
 
         <?php //Ejercicio 7:
 
-
-
+        echo "7.- Función ordenar(): A esta función se le pasa un array y lo ordena mediante una llamada a usort,
+                al que se indicará como función callback una función anónima que ordenará en orden descendente
+                según el número de caracteres de cada elemento. <br><br><br>";
 
         //Ejecucion de las funciones
-
+        echo "Ejemplo:<br> \$vector=array((“uno”,“grande”,“caminos”,”a”)  =>  ";
+        ordenar($vector);
+        foreach($vector as $elem){
+            echo $elem . " - ";
+        }
 
         ?>
     </main>
