@@ -7,7 +7,7 @@ $barra = [
         "TEXTO" => "inicio",
         "ENLACE" => "/index.php",
     ],
-    
+
     [
         "TEXTO" => "Proyecto7",
         "ENLACE" => "/aplicacion/Proyecto7/index.php"
@@ -44,7 +44,15 @@ function cuerpo()
 ?>
     <main id="main">
         <br><br>
-
+        <form method="post" action="index.php">
+            <fieldset>
+                <label for="x">Cordenada X</label>
+                <input type="number"> <br>
+                <label for="y">Cordenada Y</label>
+                <input type="number">
+                <select name="" id=""></select>
+            </fieldset>
+        </form>
         <?php //Ejercicio ¿:
 
 
