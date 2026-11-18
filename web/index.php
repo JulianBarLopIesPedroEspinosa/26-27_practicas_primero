@@ -41,6 +41,8 @@ function cuerpo()
         <a href="./aplicacion/Proyecto3/index.php">Proyecto3 </a> <br>
         <a href="./aplicacion/Proyecto4/index.php">Proyecto4 </a> <br>
         <a href="./aplicacion/Proyecto5/index.php">Proyecto5 </a> <br>
+        <a href="./aplicacion/Proyecto7/index.php">Proyecto7 </a> <br>
+
 
         <a href="./aplicacion/pruebas/index.php">Pruebas</a>
     </main>
