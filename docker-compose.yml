@@ -1,6 +1,6 @@
 services:
   php:
-    image: vicentett1/php-xdebug:1.0
+    image: vicentett1/php-xdebug:2.0
     volumes:
       - type: bind
         source: ./web

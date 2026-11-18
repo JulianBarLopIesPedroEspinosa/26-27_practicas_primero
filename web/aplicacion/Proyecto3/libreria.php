@@ -52,7 +52,7 @@ function cuentaVeces(array &$array, string $str, int $num1, int &$num2): bool
  */
 function generarCadena(int $num = 10): string|false
 {
-    if ($num <= 0) return false;
+    if ($num <= 0) return false;    
     $caracteres = mb_str_split("qwertyuioplkjhgfdsazxcvbnmMNBVCXZLKJHGFDSAQWERTYUIOP1234567890");
     $cadena = "";
     for ($i = 0; $i < $num; $i++) {
