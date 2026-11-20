@@ -19,6 +19,11 @@ $barra = [
 ];
 
 
+$puntos  = [];   // array Puntos: defínelo en un solo sitio
+$valores = ["x" => "", "y" => "", "color" => "", "grosor" => ""];
+$errores = [];
+
+
 //dibuja la plantilla de la vista
 inicioCabecera("Ej1");
 cabecera();
@@ -46,11 +51,23 @@ function cuerpo()
         <br><br>
         <form method="post" action="index.php">
             <fieldset>
-                <label for="x">Cordenada X</label>
-                <input type="number"> <br>
+                <label for="x">Coordenada X</label>
+               <!-- <input type="number" id="x" name="x" value=" htmlspecialchars($valores["x"]) ?>"> -->
                 <label for="y">Cordenada Y</label>
-                <input type="number">
-                <select name="" id=""></select>
+                <input type="number"> <br>
+                <select name="color">
+                    <option value="">-- elige --</option>
+                    <?php foreach (Punto::COLORES as $i => $elem): ?>
+                        <option value="<?= $i ?>">
+                            <?= $elem["nombre"] ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select> <br>
+                <?php foreach (Punto::GROSORES as $i => $elem): ?>
+                    <input type="radio" name="grosor">
+                    <?= $elem ?>
+                <?php endforeach; ?> <br>
+                <button type="submit" name="guardar">Guardar</button>
             </fieldset>
         </form>
         <?php //Ejercicio ¿:
